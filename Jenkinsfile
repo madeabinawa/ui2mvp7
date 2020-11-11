@@ -9,8 +9,8 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                sh "sudo rm -rf /var/www/meeting-room"
-                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/meeting-room/"
+                sh "sudo rm -rf /var/www/ui2mvp7"
+                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/ui2mvp7/"
             }
         }
     }

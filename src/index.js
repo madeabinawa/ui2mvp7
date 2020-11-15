@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Login from './login/Login'
+// import App from './App';
+// import Login from './login/Login';
+import NavbarBPBA from './navbar/NavbarBPBA';
+import HomeBPBA from './pages_BPBA/usersPage';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <NavbarBPBA />
+    <HomeBPBA />
   </React.StrictMode>,
   document.getElementById('root')
 );

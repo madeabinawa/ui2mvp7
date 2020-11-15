@@ -22,7 +22,9 @@ export default class NavbarBPBA extends Component {
                     </Nav>
                     <Navbar.Collapse className="justify-content-end">
                         {/* Sesuai dengan nama pengguna ketika login */}
-                        <Navbar.Text style={{fontWeight:'bold'}}>
+                        <Navbar.Text 
+                            className="mr-2"
+                            style={{fontWeight:'bold'}}>
                             Hai, Admin 1
                         </Navbar.Text>
                         <img 

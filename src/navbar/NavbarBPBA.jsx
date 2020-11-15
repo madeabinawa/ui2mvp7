@@ -16,10 +16,15 @@ export default class NavbarBPBA extends Component {
                         className="d-inline-block align-top"/>
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/DataUser">DATA USER</Nav.Link>
+                        <Nav.Link href="/DataUser">Data User</Nav.Link>
                         <Nav.Link href="/SetPBAM">PBAM</Nav.Link>
-                        <Nav.Link href="/JadwalLibur">JADWAL LIBUR</Nav.Link>
+                        <Nav.Link href="/JadwalLibur">Jadwal Libur</Nav.Link>
                     </Nav>
+                    <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text style={{fontWeight:'bold'}}>
+                            Hai, Admin 1
+                        </Navbar.Text>
+                    </Navbar.Collapse>
                     <Nav className="ml-auto">
                         <Nav.Link href="/">Logout</Nav.Link>
                     </Nav>

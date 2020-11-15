@@ -21,9 +21,15 @@ export default class NavbarBPBA extends Component {
                         <Nav.Link href="/JadwalLibur">Jadwal Libur</Nav.Link>
                     </Nav>
                     <Navbar.Collapse className="justify-content-end">
+                        {/* Sesuai dengan nama pengguna ketika login */}
                         <Navbar.Text style={{fontWeight:'bold'}}>
                             Hai, Admin 1
                         </Navbar.Text>
+                        <img 
+                            alt=""
+                            src={{Users}}
+                            width="30"
+                            />
                     </Navbar.Collapse>
                     <Nav className="ml-auto">
                         <Nav.Link href="/">Logout</Nav.Link>

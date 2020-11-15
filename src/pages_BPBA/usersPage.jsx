@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Col, Row } from 'react-bootstrap'
+import {Form, Col, Row, Button } from 'react-bootstrap'
 
 export default class usersPage extends Component {
     render() {
@@ -18,6 +18,8 @@ export default class usersPage extends Component {
                                 <Form.Control type="text" placeholder="Role/Nama/Email" />
                             </Col>
                         </Form.Group>
+                        <h3>Daftar Users</h3>
+                        <Button variant="success" type="submit" className="float-right">TAMBAH USER</Button>
                     </Form>
                 </div>
             </React.Fragment>

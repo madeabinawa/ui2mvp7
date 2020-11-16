@@ -100,9 +100,8 @@ export default function UsersPage() {
     return (
         <div>
             <div>
-            <NavBar />
-        </div>
-
+                <NavBar />
+            </div>
         <React.Fragment>
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">

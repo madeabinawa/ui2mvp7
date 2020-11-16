@@ -6,6 +6,7 @@ pipeline{
     stages{
         stage("Build"){
             steps{
+                sh "npm i --save @fortawesome/fontawesome-svg-core"
                 sh "npm install"
                 sh "npm run build"
             }

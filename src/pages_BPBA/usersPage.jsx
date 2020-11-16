@@ -20,7 +20,10 @@ function AddUsersModal(props) {
                     <Form.Label column sm="2">Role: </Form.Label>
                     <Col sm="10">
                         <Form.Control as="select" defaultValue="Choose...">
-                            <option>Yes</option>
+                            <option>Priority Customers (PCu)</option>
+                            <option>Personal Banking Assistent (PBA)</option>
+                            <option>Personal Banking Assistent Manager (PBAM) </option>
+                            <option>Banking Premium Booking Administration (BPBA) </option>
                         </Form.Control>
                     </Col>
                 </Form.Group>
@@ -80,7 +83,7 @@ export default function UsersPage() {
                     </Form.Group>
                 </Form>
                 <h3>Daftar Users</h3>
-                <Button variant="success" type="submit" className="float-right" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
+                <Button variant="primary" type="submit" className="float-right" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
                 
                 <AddUsersModal 
                     show={modalAdd}

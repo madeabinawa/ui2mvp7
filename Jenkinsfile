@@ -4,9 +4,13 @@ pipeline{
         githubPush()
     }
     stages{
+        stage("Add Packages"){
+            steps{
+                sh "yarn add @fortawesome/react-fontawesome"
+            }
+        }
         stage("Build"){
             steps{
-                sh "npm i --save @fortawesome/fontawesome-svg-core"
                 sh "npm install"
                 sh "npm run build"
             }

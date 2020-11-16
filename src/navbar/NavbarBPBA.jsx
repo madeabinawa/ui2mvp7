@@ -29,7 +29,7 @@ export default class NavbarBPBA extends Component {
                         </Navbar.Text>
                         <img 
                             alt=""
-                            src={{Users}}
+                            src={Users}
                             width="30"
                             />
                     </Navbar.Collapse>

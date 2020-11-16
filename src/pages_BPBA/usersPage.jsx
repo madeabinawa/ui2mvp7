@@ -1,5 +1,8 @@
 import React,{ useState } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
+import NavBar from '../navbar/NavbarBPBA';
+
+
 
 function AddUsersModal(props) {
     return (
@@ -93,8 +96,14 @@ function ShowAllUsers(props) {
     )
 }
 export default function UsersPage() {
+    
     const[modalAdd, setModalAdd] = useState(false);
     return (
+        <div>
+            <div>
+            <NavBar />
+        </div>
+
         <React.Fragment>
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
@@ -110,7 +119,7 @@ export default function UsersPage() {
                     </Col>
                     </Form.Group>
                 </Form>
-                <h3>Daftar Users</h3>
+               
                 <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
                 </ButtonGroup>
@@ -119,7 +128,9 @@ export default function UsersPage() {
                     onHide={() => setModalAdd(false)}
                 />
                 <ShowAllUsers />
+                
             </div>
         </React.Fragment>
+        </div>
     )
 }

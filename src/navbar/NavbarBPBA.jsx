@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import LogoBRI from '../Assets/BANK_BRI_logo.svg'
 import Users from '../Assets/user.svg'
 
-export default class NavbarBPBA extends Component {
+class NavbarBPBA extends Component {
     render() {
         return (
             <div>
@@ -16,9 +16,9 @@ export default class NavbarBPBA extends Component {
                         className="d-inline-block align-top"/>
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/DataUser">Data User</Nav.Link>
-                        <Nav.Link href="/SetPBAM">PBAM</Nav.Link>
-                        <Nav.Link href="/JadwalLibur">Jadwal Libur</Nav.Link>
+                        <Nav.Link href="/">Data User</Nav.Link>
+                        <Nav.Link href="/pbamPage">PBAM</Nav.Link>
+                        <Nav.Link href="/jadwalPage">Jadwal Libur</Nav.Link>
                     </Nav>
                     <Navbar.Collapse className="justify-content-end">
                         {/* Sesuai dengan nama pengguna ketika login */}
@@ -41,3 +41,5 @@ export default class NavbarBPBA extends Component {
         )
     }
 }
+
+export default NavbarBPBA;

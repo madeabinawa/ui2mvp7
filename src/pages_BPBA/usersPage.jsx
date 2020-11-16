@@ -118,7 +118,6 @@ export default function UsersPage() {
                     </Col>
                     </Form.Group>
                 </Form>
-               
                 <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
                 </ButtonGroup>

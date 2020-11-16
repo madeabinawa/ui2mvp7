@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import HomeBPBA from './pages_BPBA/usersPage';
-import HomePBAM from './pages_BPBA/pbamPage';
+import HomeBPBA from './pages_BPBA/UsersPage';
+import HomePBAM from './pages_BPBA/PbamPage';
 
 function routes() {
     return(

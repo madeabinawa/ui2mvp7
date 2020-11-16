@@ -1,13 +1,8 @@
 import React,{ useState } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
-<<<<<<< HEAD
-import NavBar from '../navbar/NavbarBPBA';
-
-
-=======
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
->>>>>>> b7a6bb4b349cb6d9afebe594abacd8cd5d4eb814
+import NavBar from '../navbar/NavbarBPBA';
 
 function AddUsersModal(props) {
     return (

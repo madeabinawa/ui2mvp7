@@ -6,8 +6,9 @@ pipeline{
     stages{
         stage("Add Packages"){
             steps{
+                sh "yarn add @fortawesome/free-solid-svg-icons"
+                sh "yarn add @fortawesome/fontawesome-svg-core"
                 sh "yarn add @fortawesome/react-fontawesome"
-                sh "npm i --save @fortawesome/free-solid-svg-icons"
             }
         }
         stage("Build"){

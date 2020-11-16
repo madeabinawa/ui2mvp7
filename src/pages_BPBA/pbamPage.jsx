@@ -1,31 +1,50 @@
 import React, { Component } from 'react';
 import NavBar from '../navbar/NavbarBPBA';
 import { Button, Table, ButtonGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDelete } from '@fortawesome/free-solid-svg-icons'
 
 
-function ShowAllUsers(props) {
+function ShowPba(props) {
     return(
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>ID User</th>
-                    <th>Nama User</th>
-                    <th>Role</th>
-                    <th>Email 1</th>
-                    <th>Email 2</th>
+                    <th>No.</th>
+                    <th>Nama PBA</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
             <tr>
-                    <td>PCU01</td>
+                    <td>1</td>
                     <td>Caca Marica</td>
-                    <td>PCU</td>
-                    <td>caca01@gmail.com</td>
-                    <td></td>
                     <td>Disable</td>
-                    <td><i class="fa fa-edit"></i></td>
+                    <td><FontAwesomeIcon icon={faDelete} /></td>
+                </tr>
+            </tbody>
+        </Table>
+    )
+}
+
+function ShowAvalPba(props) {
+    return(
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Id Users</th>
+                    <th>Nama PBA</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                    <td>PB02</td>
+                    <td>Nina Marlina</td>
+                    <td>Enable</td>
+                    <td><Button variant="success">TAMBAH</Button></td>
                 </tr>
             </tbody>
         </Table>
@@ -47,7 +66,10 @@ class pbamPage extends Component {
                  </div>
              </div>
              <div className="container">
-                <ShowAllUsers />
+                 <h3> Anggota PBA </h3>
+                <ShowPba />
+                <h3> Available PBA </h3>
+                <ShowAvalPba />
              </div>
          </React.Fragment>
          </div>

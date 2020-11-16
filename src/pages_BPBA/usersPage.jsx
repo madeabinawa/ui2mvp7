@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import { Form, Col, Row, Button, Modal } from 'react-bootstrap'
+import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 
 function AddUsersModal(props) {
     return (
@@ -64,6 +64,34 @@ function AddUsersModal(props) {
     )
 }
 
+function ShowAllUsers(props) {
+    return(
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>ID User</th>
+                    <th>Nama User</th>
+                    <th>Role</th>
+                    <th>Email 1</th>
+                    <th>Email 2</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                    <td>PCU01</td>
+                    <td>Caca Marica</td>
+                    <td>PCU</td>
+                    <td>caca01@gmail.com</td>
+                    <td></td>
+                    <td>Disable</td>
+                    <td><i class="fas fa-edit"></i></td>
+                </tr>
+            </tbody>
+        </Table>
+    )
+}
 export default function UsersPage() {
     const[modalAdd, setModalAdd] = useState(false);
     return (
@@ -83,12 +111,14 @@ export default function UsersPage() {
                     </Form.Group>
                 </Form>
                 <h3>Daftar Users</h3>
-                <Button variant="primary" type="submit" className="float-right" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
-                
+                <ButtonGroup className="mb-2 float-right">
+                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
+                </ButtonGroup>
                 <AddUsersModal 
                     show={modalAdd}
                     onHide={() => setModalAdd(false)}
                 />
+                <ShowAllUsers />
             </div>
         </React.Fragment>
     )

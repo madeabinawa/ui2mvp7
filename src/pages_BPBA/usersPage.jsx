@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import NavBar from '../navbar/NavbarBPBA';
 
 function AddUsersModal(props) {
@@ -66,7 +66,6 @@ function AddUsersModal(props) {
         </Modal>
     )
 }
-
 function ShowAllUsers(props) {
     return(
         <Table striped bordered hover>
@@ -89,7 +88,7 @@ function ShowAllUsers(props) {
                     <td>caca01@gmail.com</td>
                     <td></td>
                     <td>Disable</td>
-                    <td><FontAwesomeIcon icon={faEdit} /></td>
+                    {/* <td><FontAwesomeIcon icon={faEdit} /></td> */}
                 </tr>
             </tbody>
         </Table>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from '../navbar/NavbarBPBA';
-import { Button, Table, ButtonGroup } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { Button, Table, Form, Row, Col } from 'react-bootstrap';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 function ShowPba(props) {
@@ -21,7 +21,7 @@ function ShowPba(props) {
                     <td>1</td>
                     <td>Caca Marica</td>
                     <td>Disable</td>
-                    <td><FontAwesomeIcon icon={faTrash} /></td>
+                    {/* <td><FontAwesomeIcon icon={faTrash} /></td> */}
                 </tr>
             </tbody>
         </Table>
@@ -66,9 +66,19 @@ class pbamPage extends Component {
                         </div>
                     </div>
                     <div className="container">
-                        <h3> Anggota PBA </h3>
+                    <Form>
+                        <Form.Group as={Row} controlId="formGroupRole">
+                                <Form.Label column sm="1">PBAM: </Form.Label>
+                                <Col sm="5">
+                                    <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Revi Yey</option>
+                                    </Form.Control>
+                                </Col>
+                            </Form.Group>
+                    </Form>
+                        <h3 style={{ color: 'orange' }}> Anggota PBA </h3>
                         <ShowPba />
-                        <h3> Available PBA </h3>
+                        <h3 style={{ color: 'green' }}> Available PBA </h3>
                         <ShowAvalPba />
                     </div>
                 </React.Fragment>

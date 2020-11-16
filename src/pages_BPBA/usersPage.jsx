@@ -11,19 +11,51 @@ function AddUsersModal(props) {
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Tambah User
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <h4>Centered Modal</h4>
-            <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-            </p>
+        <Form>
+                <Form.Group as={Row} controlId="formGroupRole">
+                    <Form.Label column sm="2">Role: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control as="select" defaultValue="Choose...">
+                            <option>Yes</option>
+                        </Form.Control>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupName">
+                    <Form.Label column sm="2">Nama: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="text"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail">
+                    <Form.Label column sm="2">Email 1: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="email"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail2">
+                    <Form.Label column sm="2">Email 2: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="email"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupStatus">
+                    <Form.Label column sm="2">Status: </Form.Label>
+                    <Col sm="3">
+                        <Form.Control as="select" defaultValue="Choose...">
+                            <option>Enable</option>
+                            <option>Disable</option>
+                        </Form.Control>
+                    </Col>
+                </Form.Group>
+            </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={props.onHide}>Close</Button>
+            <Button variant="success">Simpan</Button>
+            <Button variant="danger" onClick={props.onHide}>Batal</Button>
         </Modal.Footer>
         </Modal>
     )

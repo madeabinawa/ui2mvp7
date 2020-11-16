@@ -1,5 +1,7 @@
 import React,{ useState } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 function AddUsersModal(props) {
     return (
@@ -86,7 +88,7 @@ function ShowAllUsers(props) {
                     <td>caca01@gmail.com</td>
                     <td></td>
                     <td>Disable</td>
-                    <td><i class="fas fa-edit"></i></td>
+                    <td><FontAwesomeIcon icon={faEdit} /></td>
                 </tr>
             </tbody>
         </Table>

@@ -34,7 +34,7 @@ class NavbarBPBA extends Component {
                             />
                     </Navbar.Collapse>
                     <Nav className="ml-auto">
-                        <Nav.Link href="/">Logout</Nav.Link>
+                        <Nav.Link href="/login">Logout</Nav.Link>
                     </Nav>
                 </Navbar>
             </div>

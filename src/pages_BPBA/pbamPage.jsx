@@ -5,6 +5,7 @@ import { Button, Table, Form, Row, Col, Modal } from 'react-bootstrap';
 // import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function ShowPba(props) {
+    const[modalDelete, setModalDelete] = useState(false);
     return (
         <Table striped bordered hover>
             <thead>
@@ -20,7 +21,11 @@ function ShowPba(props) {
                     <td>1</td>
                     <td>Caca Marica</td>
                     <td>Disable</td>
-                    {/* <td><FontAwesomeIcon icon={faTrash} /></td> */}
+                    <td>
+                        <Button variant="danger" onClick={() => setModalDelete(true)}>Hapus</Button>
+                        <DeletePBAModal 
+                            show={modalDelete}
+                            onHide={() => setModalDelete(false)}/></td>
                 </tr>
             </tbody>
         </Table>
@@ -56,7 +61,6 @@ function ShowAvalPba(props) {
         </div>
     )
 }
-
 function AddPBAModal(props) {
     return (
         <Modal
@@ -75,6 +79,29 @@ function AddPBAModal(props) {
         <Modal.Footer>
             <Button variant="success">Simpan</Button>
             <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        </Modal.Footer>
+        </Modal>
+    )
+}
+
+function DeletePBAModal(props) {
+    return (
+        <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Nortifikasi
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <p>Apakah anda yakin menghapus PBA Nina Marlina?</p>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="success">Ya</Button>
+            <Button variant="danger" onClick={props.onHide}>Tidak</Button>
         </Modal.Footer>
         </Modal>
     )

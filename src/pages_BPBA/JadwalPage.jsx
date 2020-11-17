@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 
 function ShowAllHoliday(props) {
+    const[modalDelete, setModalDelete] = useState(false);
     return(
         <Table striped bordered hover>
             <thead>
@@ -19,7 +20,13 @@ function ShowAllHoliday(props) {
                     <td>25 Desember 2020</td>
                     <td>25 Desember 2020</td>
                     <td>Hari Natal</td>
-                    <td></td>
+                    <td>
+                        <Button variant="warning" >Ubah</Button>{' '}
+                        <Button variant="danger" onClick={() => setModalDelete(true)}>Hapus</Button>
+                        <DeletePBAModal 
+                            show={modalDelete}
+                            onHide={() => setModalDelete(false)}/>
+                    </td>
                 </tr>
             </tbody>
         </Table>
@@ -62,6 +69,29 @@ function AddHolidayModal(props) {
         <Modal.Footer>
             <Button variant="success">Simpan</Button>
             <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        </Modal.Footer>
+        </Modal>
+    )
+}
+
+function DeletePBAModal(props) {
+    return (
+        <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Nortifikasi
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <p>Apakah anda yakin menghapus Libur Hari Natal?</p>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="success">Ya</Button>
+            <Button variant="danger" onClick={props.onHide}>Tidak</Button>
         </Modal.Footer>
         </Modal>
     )

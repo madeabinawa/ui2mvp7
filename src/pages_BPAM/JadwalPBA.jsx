@@ -6,9 +6,19 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function ShowLokasi(props) {
+    const[modalAdd, setModalAdd] = useState(false);
     const[modalDelete, setModalDelete] = useState(false);
     return (
-        <Table striped bordered hover responsive>
+        <div>
+            <h2 style={{ color: 'orange', marginTop:30 }} > LOKASI KERJA </h2>
+                    <ButtonGroup className="mb-2 float-right">
+                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH LOKASI  </Button>
+                    </ButtonGroup>
+                    <AddPBAModal 
+                    show={modalAdd}
+                    onHide={() => setModalAdd(false)}
+                />
+            <Table striped bordered hover responsive>
             <thead style={{textAlign:'center'}}>
                 <tr>
                     <th>No.</th>
@@ -30,14 +40,23 @@ function ShowLokasi(props) {
                 </tr>
             </tbody>
         </Table>
+        </div>
     )
 }
 
 function ShowHari(props) {
+    const[modalAdd, setModalAdd] = useState(false);
     const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
-            <Table striped bordered hover>
+            <h2 style={{ color: 'green', marginTop:30  }}> JADWAL HARI & JAM KERJA </h2>
+            <ButtonGroup className="mb-2 float-right">
+                <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH HARI KERJA  </Button>
+            </ButtonGroup>
+            <AddPBAModal 
+                    show={modalAdd}
+                    onHide={() => setModalAdd(false)} />
+            <Table striped bordered hover responsive>
                 <thead style={{textAlign:'center'}}>
                     <tr>
                         <th>No.</th>
@@ -55,23 +74,33 @@ function ShowHari(props) {
                         <td>16 Desember 2020</td>
                         <td>09:00</td>
                         <td>11:00</td>
-                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button></td>
+                        <td>
+                            <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
+                            <DeletePBAModal 
+                                show={modalDelete}
+                                onHide={() => setModalDelete(false)}
+                            />
+                        </td>
                     </tr>
                 </tbody>
             </Table>
-            <DeletePBAModal 
-                    show={modalDelete}
-                    onHide={() => setModalDelete(false)}
-                />
         </div>
     )
 }
 
 function ShowCuti(props) {
+    const[modalAdd, setModalAdd] = useState(false);
     const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
-            <Table striped bordered hover>
+            <h2 style={{ color: 'red', marginTop:30  }}> JADWAL CUTI </h2>
+            <ButtonGroup className="mb-2 float-right">
+                <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH CUTI  </Button>
+            </ButtonGroup>
+            <AddPBAModal 
+                show={modalAdd}
+                onHide={() => setModalAdd(false)} />
+            <Table striped bordered hover responsive>
                 <thead style={{textAlign:'center'}}>
                     <tr>
                         <th>No.</th>
@@ -88,14 +117,15 @@ function ShowCuti(props) {
                         <td>16 Desember 2020</td>
                         <td>18 Desember 2020</td>
                         <td>Cuti Kerja</td>
-                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button></td>
+                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button>
+                            <DeletePBAModal 
+                                show={modalDelete}
+                                onHide={() => setModalDelete(false)}
+                            />
+                        </td>
                     </tr>
                 </tbody>
             </Table>
-            <DeletePBAModal 
-                    show={modalDelete}
-                    onHide={() => setModalDelete(false)}
-                />
         </div>
     )
 }
@@ -145,6 +175,7 @@ function DeletePBAModal(props) {
         </Modal>
     )
 }
+
 export default function JadwalPBA() {
     const[modalAddPDA, setModalAddPDA] = useState(false);
     const ColoredLine = ({ color }) => (
@@ -173,30 +204,14 @@ export default function JadwalPBA() {
 
                     <ColoredLine color="black" />
 
-                    <h2 style={{ color: 'orange', marginTop:30 }} > LOKASI KERJA </h2>
-                    <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH LOKASI  </Button>
-                    </ButtonGroup>
-                    <AddPBAModal 
-                    show={modalAddPDA}
-                    onHide={() => setModalAddPDA(false)}
-                />
                     <ShowLokasi />
 
                     <ColoredLine color="black" />
 
-                    <h2 style={{ color: 'green' }}> JADWAL HARI & JAM KERJA </h2>
-                    <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH HARI KERJA  </Button>
-                    </ButtonGroup>
                     <ShowHari />
 
                     <ColoredLine color="black" />
 
-                    <h2 style={{ color: 'red' }}> JADWAL CUTI </h2>
-                    <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH CUTI  </Button>
-                    </ButtonGroup>
                     <ShowCuti />
                 </div>
             </React.Fragment>

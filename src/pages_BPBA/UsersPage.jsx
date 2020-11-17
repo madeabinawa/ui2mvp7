@@ -1,7 +1,8 @@
 import React,{ useState } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import NavBar from '../navbar/NavbarBPBA';
 
 function AddUsersModal(props) {
@@ -67,10 +68,12 @@ function AddUsersModal(props) {
     )
 }
 function ShowAllUsers(props) {
+    const[modalAdd, setModalAdd] = useState(false);
     return(
         <Table striped bordered hover>
-            <thead>
+            <thead style={{textAlign:'center'}}>
                 <tr>
+                    <th>No.</th>
                     <th>ID User</th>
                     <th>Nama User</th>
                     <th>Role</th>
@@ -80,15 +83,20 @@ function ShowAllUsers(props) {
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style={{textAlign:'center'}}>
             <tr>
+                    <td>1</td>
                     <td>PCU01</td>
                     <td>Caca Marica</td>
                     <td>PCU</td>
                     <td>caca01@gmail.com</td>
                     <td></td>
                     <td>Disable</td>
-                    <td><Button variant="warning" >Ubah</Button></td>
+                    <td style={{textAlign:'center'}}> <Button style={{"width" : "100%"}} variant="warning" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button> </td>
+                    <AddUsersModal 
+                    show={modalAdd}
+                    onHide={() => setModalAdd(false)}
+                />
                 </tr>
             </tbody>
         </Table>
@@ -117,7 +125,7 @@ export default function UsersPage() {
                     </Form.Group>
                 </Form>
                 <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}>TAMBAH USER</Button>
+                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH USER  </Button>
                 </ButtonGroup>
                 <AddUsersModal 
                     show={modalAdd}

@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import LogoBRI from '../Assets/BANK_BRI_logo.svg'
 import Users from '../Assets/user.svg'
+import { Link, withRouter } from 'react-router-dom'
+import styles from '../App.css'
 
-class NavbarBPBA extends Component {
-    render() {
+function NavbarBPBA(props) {
+
+        const pathname = props.location.pathname
+
         return (
             <div>
                 <Navbar bg="light" variant="light">
@@ -16,9 +20,11 @@ class NavbarBPBA extends Component {
                         className="d-inline-block align-top"/>
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/userPage">Data User</Nav.Link>
-                        <Nav.Link href="/pbamPage">PBAM</Nav.Link>
-                        <Nav.Link href="/jadwalPage">Jadwal Libur</Nav.Link>
+                    <Nav.Link as={Link} to="/userPage" active={pathname.startsWith('/userPage')}>Data User</Nav.Link>
+                    <Nav.Link as={Link} to="/pbamPage" active={pathname.startsWith('/pbamPage')}>PBAM</Nav.Link>
+                    <Nav.Link as={Link} to="/jadwalPage" active={pathname.startsWith('/jadwalPage')}>JADWAL LIBUR</Nav.Link>     
+                    {/* <Nav.Link href="/pbamPage">PBAM</Nav.Link>
+                    <Nav.Link href="/jadwalPage">Jadwal Libur</Nav.Link> */}
                     </Nav>
                     <Navbar.Collapse className="justify-content-end">
                         {/* Sesuai dengan nama pengguna ketika login */}
@@ -40,6 +46,5 @@ class NavbarBPBA extends Component {
             </div>
         )
     }
-}
 
-export default NavbarBPBA;
+export default withRouter(NavbarBPBA)

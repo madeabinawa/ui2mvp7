@@ -70,7 +70,7 @@ function AddUsersModal(props) {
 function ShowAllUsers(props) {
     const[modalAdd, setModalAdd] = useState(false);
     return(
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
             <thead style={{textAlign:'center'}}>
                 <tr>
                     <th>No.</th>

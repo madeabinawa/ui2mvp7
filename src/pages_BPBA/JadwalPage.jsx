@@ -9,7 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 function ShowAllHoliday(props) {
     const[modalDelete, setModalDelete] = useState(false);
     return(
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
             <thead style={{textAlign:'center'}}>
                 <tr>
                     <th>ID Libur</th>

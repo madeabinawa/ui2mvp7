@@ -88,14 +88,13 @@ function ShowAllUsers(props) {
                     <td>caca01@gmail.com</td>
                     <td></td>
                     <td>Disable</td>
-                    {/* <td><FontAwesomeIcon icon={faEdit} /></td> */}
+                    <td><Button variant="warning" >Ubah</Button></td>
                 </tr>
             </tbody>
         </Table>
     )
 }
 export default function UsersPage() {
-    
     const[modalAdd, setModalAdd] = useState(false);
     return (
         <div>

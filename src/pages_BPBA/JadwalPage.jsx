@@ -8,6 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function ShowAllHoliday(props) {
     const[modalDelete, setModalDelete] = useState(false);
+    const[modalEdit, setModalEdit] = useState(false);
     return(
         <Table striped bordered hover responsive>
             <thead style={{textAlign:'center'}}>
@@ -26,8 +27,10 @@ function ShowAllHoliday(props) {
                     <td>25 Desember 2020</td>
                     <td>Hari Natal</td>
                     <td>
-                        <Button variant="warning" > <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
+                        <Button variant="warning" onClick={() => setModalEdit(true)}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
                         <Button variant="danger" onClick={() => setModalDelete(true)}><FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
+                        <EditHolidayModal show={modalEdit}
+                            onHide={() => setModalEdit(false)}/>
                         <DeleteHolidayModal 
                             show={modalDelete}
                             onHide={() => setModalDelete(false)}/>
@@ -80,6 +83,47 @@ function AddHolidayModal(props) {
     )
 }
 
+function EditHolidayModal(props) {
+    return (
+        <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Ubah Tanggal Libur
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+                <Form.Group as={Row} controlId="formGroupHolidayStart">
+                    <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupHolidayEnd">
+                    <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail2">
+                    <Form.Label column sm="4">Deskripsi: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control as="textarea" rows={3}/>
+                    </Col>
+                </Form.Group>
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="success">Simpan</Button>
+            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        </Modal.Footer>
+        </Modal>
+    )
+}
 function DeleteHolidayModal(props) {
     return (
         <Modal

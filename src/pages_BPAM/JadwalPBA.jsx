@@ -3,7 +3,7 @@ import NavBar from '../navbar/NavbarBPBA';
 import { Button, Table, Form, Row, Col, Modal, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 function ShowLokasi(props) {
     const[modalAdd, setModalAdd] = useState(false);
@@ -75,6 +75,7 @@ function ShowHari(props) {
                         <td>09:00</td>
                         <td>11:00</td>
                         <td>
+                            <Button variant="warning"> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
                             <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
                             <DeletePBAModal 
                                 show={modalDelete}
@@ -117,7 +118,9 @@ function ShowCuti(props) {
                         <td>16 Desember 2020</td>
                         <td>18 Desember 2020</td>
                         <td>Cuti Kerja</td>
-                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button>
+                        <td>
+                            <Button variant="warning"> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
+                            <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button>
                             <DeletePBAModal 
                                 show={modalDelete}
                                 onHide={() => setModalDelete(false)}

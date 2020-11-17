@@ -103,7 +103,7 @@ function ShowCuti(props) {
             <ButtonGroup className="mb-2 float-right">
                 <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH CUTI  </Button>
             </ButtonGroup>
-            <AddPBAModal 
+            <AddCutiModal 
                 show={modalAdd}
                 onHide={() => setModalAdd(false)} />
             <Table striped bordered hover responsive>
@@ -199,6 +199,48 @@ function AddHariModal(props) {
                     <Form.Label column sm="4">Waktu Akhir: </Form.Label>
                     <Col sm="8">
                         <Form.Control type="time" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="success">Simpan</Button>
+            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        </Modal.Footer>
+        </Modal>
+    )
+}
+
+function AddCutiModal(props) {
+    return (
+        <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Tambah Tanggal Cuti
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+                <Form.Group as={Row} controlId="formGroupHolidayStart">
+                    <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupHolidayEnd">
+                    <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail2">
+                    <Form.Label column sm="4">Deskripsi: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control as="textarea" rows={3}/>
                     </Col>
                 </Form.Group>
             </Form>

@@ -24,7 +24,7 @@ function ShowPba(props) {
                     <td>Caca Marica</td>
                     <td>caca@gmail.com</td>
                     <td>
-                    <Link to="/lihatJadwal">
+                    <Link to="/jadwalPBA">
                     <Button variant="success" style={{marginRight:10}}> <FontAwesomeIcon icon={faCalendar} /> LIHAT JADWAL </Button>
                     </Link>
                     <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button>

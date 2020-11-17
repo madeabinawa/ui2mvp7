@@ -34,7 +34,7 @@ function ShowLokasi(props) {
 }
 
 function ShowHari(props) {
-    const[modalAddPDA, setModalAddPDA] = useState(false);
+    const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
             <Table striped bordered hover>
@@ -55,20 +55,20 @@ function ShowHari(props) {
                         <td>16 Desember 2020</td>
                         <td>09:00</td>
                         <td>11:00</td>
-                        <td><Button variant="success" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH</Button></td>
+                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button></td>
                     </tr>
                 </tbody>
             </Table>
-            <AddPBAModal 
-                    show={modalAddPDA}
-                    onHide={() => setModalAddPDA(false)}
+            <DeletePBAModal 
+                    show={modalDelete}
+                    onHide={() => setModalDelete(false)}
                 />
         </div>
     )
 }
 
 function ShowCuti(props) {
-    const[modalAddPDA, setModalAddPDA] = useState(false);
+    const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
             <Table striped bordered hover>
@@ -88,13 +88,13 @@ function ShowCuti(props) {
                         <td>16 Desember 2020</td>
                         <td>18 Desember 2020</td>
                         <td>Cuti Kerja</td>
-                        <td><Button variant="success" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH</Button></td>
+                        <td><Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button></td>
                     </tr>
                 </tbody>
             </Table>
-            <AddPBAModal 
-                    show={modalAddPDA}
-                    onHide={() => setModalAddPDA(false)}
+            <DeletePBAModal 
+                    show={modalDelete}
+                    onHide={() => setModalDelete(false)}
                 />
         </div>
     )
@@ -109,7 +109,7 @@ function AddPBAModal(props) {
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            Nortifikasi
+            Notifikasi
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -132,11 +132,11 @@ function DeletePBAModal(props) {
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            Nortifikasi
+            Notifikasi
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <p>Apakah anda yakin menghapus PBA Nina Marlina?</p>
+        <p>Apakah anda yakin menghapus data ini?</p>
         </Modal.Body>
         <Modal.Footer>
             <Button variant="success">Ya</Button>
@@ -147,6 +147,15 @@ function DeletePBAModal(props) {
 }
 export default function JadwalPBA() {
     const[modalAddPDA, setModalAddPDA] = useState(false);
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: 'black',
+                height: 3
+            }}
+        />
+    );
     return (
         <div>
             <div>
@@ -162,16 +171,28 @@ export default function JadwalPBA() {
                     <h4> Nama: Niana Marlina </h4>
                     <h4> Role: Personal Banking Asistant (PBA) </h4>
 
-                    <h2 style={{ color: 'orange' }} > LOKASI KERJA </h2>
+                    <ColoredLine color="black" />
+
+                    <h2 style={{ color: 'orange', marginTop:30 }} > LOKASI KERJA </h2>
                     <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH LOKASI  </Button>
                     </ButtonGroup>
+                    <AddPBAModal 
+                    show={modalAddPDA}
+                    onHide={() => setModalAddPDA(false)}
+                />
                     <ShowLokasi />
+
+                    <ColoredLine color="black" />
+
                     <h2 style={{ color: 'green' }}> JADWAL HARI & JAM KERJA </h2>
                     <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH JADWAL KERJA  </Button>
+                    <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH HARI KERJA  </Button>
                     </ButtonGroup>
                     <ShowHari />
+
+                    <ColoredLine color="black" />
+
                     <h2 style={{ color: 'red' }}> JADWAL CUTI </h2>
                     <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH CUTI  </Button>

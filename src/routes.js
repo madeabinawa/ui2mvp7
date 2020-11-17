@@ -6,6 +6,7 @@ import Jadwal from './pages_BPBA/JadwalPage';
 import Login from './login/Login';
 import HomePBAM from './pages_BPAM/PbaPages';
 import JadwalBPA from './pages_BPAM/JadwalPBA';
+import GantiPassword from './pages_BPBA/UbahPassPage';
 
 function routes() {
     return(
@@ -17,6 +18,7 @@ function routes() {
             <Route exact path="/pbaPage" component={HomePBAM} />
             <Route exact path="/jadwalPBA" component={JadwalBPA} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/ubahPassPage" component={GantiPassword} />
         </BrowserRouter>
     );
 }

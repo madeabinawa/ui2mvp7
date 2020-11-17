@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 import NavBar from '../navbar/NavbarBPBA';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function ShowAllHoliday(props) {
     const[modalDelete, setModalDelete] = useState(false);
     return(
-        <Table striped bordered hover>
-            <thead>
+        <Table striped bordered hover responsive>
+            <thead style={{textAlign:'center'}}>
                 <tr>
                     <th>ID Libur</th>
                     <th>Tanggal Mulai</th>
@@ -15,15 +19,15 @@ function ShowAllHoliday(props) {
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style={{textAlign:'center'}}>
             <tr>
                     <td>JD01</td>
                     <td>25 Desember 2020</td>
                     <td>25 Desember 2020</td>
                     <td>Hari Natal</td>
                     <td>
-                        <Button variant="warning" >Ubah</Button>{' '}
-                        <Button variant="danger" onClick={() => setModalDelete(true)}>Hapus</Button>
+                        <Button variant="warning" > <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
+                        <Button variant="danger" onClick={() => setModalDelete(true)}><FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
                         <DeleteHolidayModal 
                             show={modalDelete}
                             onHide={() => setModalDelete(false)}/>
@@ -113,7 +117,7 @@ export default function JadwalPage() {
             </div>
             <div className="container">
                 <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}>TAMBAH JADWAL</Button>
+                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}><FontAwesomeIcon icon={faPlus} /> TAMBAH JADWAL</Button>
                 </ButtonGroup>
                 <AddHolidayModal 
                     show={modalAdd}

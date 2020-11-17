@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import NavBar from '../navbar/NavbarBPBA';
 import { Button, Table, Form, Row, Col, Modal } from 'react-bootstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function ShowPba(props) {
     const[modalDelete, setModalDelete] = useState(false);
     return (
-        <Table striped bordered hover>
-            <thead>
+        <Table striped bordered hover responsive>
+            <thead style={{textAlign:'center'}}>
                 <tr>
                     <th>No.</th>
                     <th>Nama PBA</th>
@@ -16,13 +17,13 @@ function ShowPba(props) {
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style={{textAlign:'center'}}>
                 <tr>
                     <td>1</td>
                     <td>Caca Marica</td>
                     <td>Disable</td>
                     <td>
-                        <Button variant="danger" onClick={() => setModalDelete(true)}>Hapus</Button>
+                        <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
                         <DeletePBAModal 
                             show={modalDelete}
                             onHide={() => setModalDelete(false)}/></td>
@@ -37,7 +38,7 @@ function ShowAvalPba(props) {
     return (
         <div>
             <Table striped bordered hover>
-                <thead>
+                <thead style={{textAlign:'center'}}>
                     <tr>
                         <th>Id Users</th>
                         <th>Nama PBA</th>
@@ -45,12 +46,12 @@ function ShowAvalPba(props) {
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style={{textAlign:'center'}}>
                     <tr>
                         <td>PB02</td>
                         <td>Nina Marlina</td>
                         <td>Enable</td>
-                        <td><Button variant="success" onClick={() => setModalAddPDA(true)}>TAMBAH</Button></td>
+                        <td><Button variant="success" onClick={() => setModalAddPDA(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH</Button></td>
                     </tr>
                 </tbody>
             </Table>

@@ -46,6 +46,7 @@ function ShowLokasi(props) {
 
 function ShowHari(props) {
     const[modalAdd, setModalAdd] = useState(false);
+    const[modalEdit, setModalEdit] = useState(false);
     const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
@@ -75,8 +76,11 @@ function ShowHari(props) {
                         <td>09:00</td>
                         <td>11:00</td>
                         <td>
-                            <Button variant="warning"> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
+                            <Button variant="warning" onClick={() => setModalEdit(true)}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
                             <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
+                            <EditHariModal
+                                show={modalEdit}
+                                onHide={() => setModalEdit(false)}/>
                             <DeletePBAModal 
                                 show={modalDelete}
                                 onHide={() => setModalDelete(false)}
@@ -156,6 +160,53 @@ function AddPBAModal(props) {
     )
 }
 
+function EditHariModal(props) {
+    return (
+        <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            Ubah Jadwal Hari & Jam Kerja
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Form>
+                <Form.Group as={Row} controlId="formGroupWorkStart">
+                    <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupWorkEnd">
+                    <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="date" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupTimeStart">
+                    <Form.Label column sm="4">Waktu Mulai: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="time" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupTimeStart">
+                    <Form.Label column sm="4">Waktu Akhir: </Form.Label>
+                    <Col sm="8">
+                        <Form.Control type="time" placeholder="Tanggal"/>
+                    </Col>
+                </Form.Group>
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="success">Simpan</Button>
+            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        </Modal.Footer>
+        </Modal>
+    )
+}
 function DeletePBAModal(props) {
     return (
         <Modal
@@ -180,7 +231,6 @@ function DeletePBAModal(props) {
 }
 
 export default function JadwalPBA() {
-    const[modalAddPDA, setModalAddPDA] = useState(false);
     const ColoredLine = ({ color }) => (
         <hr
             style={{

@@ -16,7 +16,7 @@ class NavbarBPBA extends Component {
                         className="d-inline-block align-top"/>
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/">Data User</Nav.Link>
+                        <Nav.Link href="/userPage">Data User</Nav.Link>
                         <Nav.Link href="/pbamPage">PBAM</Nav.Link>
                         <Nav.Link href="/jadwalPage">Jadwal Libur</Nav.Link>
                     </Nav>

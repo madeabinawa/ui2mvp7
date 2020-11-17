@@ -8,7 +8,8 @@ import Login from './login/Login'
 function routes() {
     return(
         <BrowserRouter>
-            <Route exact path="/" component={HomeBPBA} />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/userPage" component={HomeBPBA} />
             <Route exact path="/pbamPage" component={SetPBAM} />
             <Route exact path="/jadwalPage" component={Jadwal} />
             <Route exact path="/login" component={Login} />

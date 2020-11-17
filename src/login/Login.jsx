@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import './Login.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
     render() {
@@ -20,7 +21,9 @@ export default class Login extends Component {
                             
                             <Form.Control type="password" placeholder="Enter Password" id="password"/>
                         </Form.Group>
+                        <Link to="/userPage">
                         <Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>
+                        </Link>
                     </Form>
                 </div>
             </div>

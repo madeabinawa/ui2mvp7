@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
+import NavBar from '../navbar/NavbarBPBA';
 
 function ShowAllHoliday(props) {
     const[modalDelete, setModalDelete] = useState(false);
@@ -23,7 +24,7 @@ function ShowAllHoliday(props) {
                     <td>
                         <Button variant="warning" >Ubah</Button>{' '}
                         <Button variant="danger" onClick={() => setModalDelete(true)}>Hapus</Button>
-                        <DeletePBAModal 
+                        <DeleteHolidayModal 
                             show={modalDelete}
                             onHide={() => setModalDelete(false)}/>
                     </td>
@@ -32,6 +33,7 @@ function ShowAllHoliday(props) {
         </Table>
     )
 }
+
 function AddHolidayModal(props) {
     return (
         <Modal
@@ -74,7 +76,7 @@ function AddHolidayModal(props) {
     )
 }
 
-function DeletePBAModal(props) {
+function DeleteHolidayModal(props) {
     return (
         <Modal
         {...props}
@@ -96,10 +98,14 @@ function DeletePBAModal(props) {
         </Modal>
     )
 }
+
 export default function JadwalPage() {
     const[modalAdd, setModalAdd] = useState(false);
     return (
         <React.Fragment>
+            <div>
+                <NavBar />
+            </div>
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                     <h2 style={{fontWeight:'bold'}}>JADWAL LIBUR</h2>

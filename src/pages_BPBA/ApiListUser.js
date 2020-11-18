@@ -34,49 +34,52 @@ class GetUsers extends Component {
                 postRole: data.user.role_id,
                 postStatus: data.user.status
             }));
-}
+    }
 
-render() {
-    const { postId, postAlamat, postNama, postEmail1, postEmail2, postHp, postRole, postStatus } = this.state;
-    
-    return (
-        <div>
-            <Table striped bordered hover responsive>
-            <thead style={{textAlign:'center'}}>
+    render() {
+        const { postId, postAlamat, postNama, postEmail1, postEmail2, postHp, postRole, postStatus } = this.state;
+        
+        return (
+            <div>
+                <Table striped bordered hover responsive>
+                <thead style={{textAlign:'center'}}>
+                        <tr>
+                            <th>No.</th>
+                            <th>ID User</th>
+                            <th>Nama User</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>No.Handphone</th>
+                            <th>Email 1</th>
+                            <th>Email 2</th>
+                            <th>Alamat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style={{textAlign:'center'}}>
                     <tr>
-                        <th>No.</th>
-                        <th>ID User</th>
-                        <th>Nama User</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>No.Handphone</th>
-                        <th>Email 1</th>
-                        <th>Email 2</th>
-                        <th>Alamat</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody style={{textAlign:'center'}}>
-                <tr>
-                        <td>1</td>
-                        <td>{postId}</td>
-                        <td>{postNama}</td>
-                        <td>{postRole}</td>
-                        <td>{postStatus}</td>
-                        <td>{postHp}</td>
-                        <td>{postEmail1}</td>
-                        <td>{postEmail2}</td>
-                        <td>{postAlamat}</td>
-                        <td style={{textAlign:'center'}}> <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalEdit: !this.state.modalEdit})}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button> </td>
-                        <EditUsersModal 
-                            show={this.state.modalEdit}
-                            onHide={() => this.setState({modalEdit: !this.state.modalEdit})}
-                            />
-                    </tr>
-                </tbody>
-            </Table>
-        </div>
-    );
+                            <td>1</td>
+                            <td>{postId}</td>
+                            <td>{postNama}</td>
+                            <td>{postRole}</td>
+                            <td>{postStatus}</td>
+                            <td>{postHp}</td>
+                            <td>{postEmail1}</td>
+                            <td>{postEmail2}</td>
+                            <td>{postAlamat}</td>
+                            <td style={{textAlign:'center'}}> 
+                                <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalEdit: !this.state.modalEdit})}> 
+                                <FontAwesomeIcon icon={faEdit} /> UBAH </Button> 
+                            </td>
+                            <EditUsersModal 
+                                show={this.state.modalEdit}
+                                onHide={() => this.setState({modalEdit: !this.state.modalEdit})}
+                                />
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
+        );
     }
 }
 function EditUsersModal(props) {
@@ -134,11 +137,11 @@ function EditUsersModal(props) {
                     </Form.Group>
                 </Form>
                 <Row>
-                        <Col sm="2" />
-                        <Col sm="5">
-                            <Button variant="warning">Reset Password</Button>
-                        </Col>
-                    </Row>
+                    <Col sm="2" />
+                    <Col sm="5">
+                        <Button variant="warning">Reset Password</Button>
+                    </Col>
+                </Row>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="success">Simpan</Button>

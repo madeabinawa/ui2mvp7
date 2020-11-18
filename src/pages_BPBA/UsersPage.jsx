@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import NavBar from '../navbar/NavbarBPBA';
-import ListUsers from './ApiListUser';
+import ShowAllUsers from './ApiListUser';
 
 function AddUsersModal(props) {
     return (
@@ -66,13 +66,6 @@ function AddUsersModal(props) {
             <Button variant="danger" onClick={props.onHide}>Batal</Button>
         </Modal.Footer>
         </Modal>
-    )
-}
-function ShowAllUsers(props) {
-    return(
-        <div>
-            <ListUsers />
-        </div>
     )
 }
 

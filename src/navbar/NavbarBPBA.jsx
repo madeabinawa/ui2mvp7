@@ -22,7 +22,8 @@ function NavbarBPBA(props) {
                     <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/userPage" active={pathname.startsWith('/userPage')}>Data User</Nav.Link>
                     <Nav.Link as={Link} to="/pbamPage" active={pathname.startsWith('/pbamPage')}>PBAM</Nav.Link>
-                    <Nav.Link as={Link} to="/jadwalPage" active={pathname.startsWith('/jadwalPage')}>JADWAL LIBUR</Nav.Link>     
+                    <Nav.Link as={Link} to="/jadwalPage" active={pathname.startsWith('/jadwalPage')}>JADWAL LIBUR</Nav.Link>
+                    <Nav.Link as={Link} to="/ubahPassPage" active={pathname.startsWith('/ubahPassPage')}>GANTI PASSWORD</Nav.Link>     
                     {/* <Nav.Link href="/pbamPage">PBAM</Nav.Link>
                     <Nav.Link href="/jadwalPage">Jadwal Libur</Nav.Link> */}
                     </Nav>

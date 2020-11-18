@@ -14,7 +14,7 @@ function ShowLokasi(props) {
                     <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH LOKASI  </Button>
                     </ButtonGroup>
-                    <AddPBAModal 
+                    <AddLokasiModal 
                     show={modalAdd}
                     onHide={() => setModalAdd(false)}
                 />
@@ -249,6 +249,41 @@ function AddCutiModal(props) {
             <Button variant="success">Simpan</Button>
             <Button variant="danger" onClick={props.onHide}>Batal</Button>
         </Modal.Footer>
+        </Modal>
+    )
+}
+
+function AddLokasiModal(props) {
+    return(
+        <Modal
+            {...props}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                Tambah Lokasi SLP
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>
+                    <Form.Group as={Row} controlId="formGroupRole">
+                        <Form.Label column sm="5">Sentra Layanan Prioritas</Form.Label>
+                        <Col sm="10">
+                            <Form.Control as="select" defaultValue="Choose...">
+                                <option>Bandung Dago</option>
+                                <option>Banjarmasin</option>
+                                <option>Denpasar</option>
+                                <option>Jakarta Kelapa Gading</option>
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+                </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="success">Simpan</Button>
+                <Button variant="danger" onClick={props.onHide}>Batal</Button>
+            </Modal.Footer>
         </Modal>
     )
 }

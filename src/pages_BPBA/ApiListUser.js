@@ -1,10 +1,89 @@
-import React,{ useState } from 'react'
+import React, { Component, useState  } from "react";
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import NavBar from '../navbar/NavbarBPBA';
-import ListUsers from './ApiListUser';
+
+
+class GetUsers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    };
+  }
+
+   /* SAMPLE UNTUK POST DATA */
+
+  componentDidMount() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+    fetch('http://18.191.9.5:8090/user/read', requestOptions)
+        .then(response => response.json())
+        //.then((data) => console.log('This is your data', data))
+        .then(data => this.setState({ 
+            postId: data.user.Id,
+            postNama: data.user.nama,
+            postHp: data.user.phone1,
+            postEmail1: data.user.email1,
+            postEmail2: data.email2,
+            postAlamat: data.user.alamat,
+            postRole: data.user.role_id,
+            postStatus: data.user.status
+        }));
+}
+
+render() {
+    const { postId, postAlamat, postNama, postEmail1, postEmail2, postHp, postRole, postStatus } = this.state;
+    
+    return (
+        <div>
+        <Table striped bordered hover responsive>
+        <thead style={{textAlign:'center'}}>
+                <tr>
+                    <th>No.</th>
+                    <th>ID User</th>
+                    <th>Nama User</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>No.Handphone</th>
+                    <th>Email 1</th>
+                    <th>Email 2</th>
+                    <th>Alamat</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody style={{textAlign:'center'}}>
+            <tr>
+                    <td>1</td>
+                    <td>{postId}</td>
+                    <td>{postNama}</td>
+                    <td>{postRole}</td>
+                    <td>{postStatus}</td>
+                    <td>{postHp}</td>
+                    <td>{postEmail1}</td>
+                    <td>{postEmail2}</td>
+                    <td>{postAlamat}</td>
+                    <td style={{textAlign:'center'}}> <Button style={{"width" : "100%"}} variant="warning"  > <FontAwesomeIcon icon={faEdit} /> UBAH </Button> </td>
+                    <ShowModal />
+                </tr>
+            </tbody>
+        </Table>
+        </div>
+    );
+}
+}
+function ShowModal(props) {
+    const[modalAdd, setModalAdd] = useState(false);
+    return(
+        <AddUsersModal 
+        show={modalAdd}
+        onHide={() => setModalAdd(false)}
+        />
+    )
+    }
 
 function AddUsersModal(props) {
     return (
@@ -68,47 +147,5 @@ function AddUsersModal(props) {
         </Modal>
     )
 }
-function ShowAllUsers(props) {
-    return(
-        <div>
-            <ListUsers />
-        </div>
-    )
-}
 
-export default function UsersPage() {
-    const[modalAdd, setModalAdd] = useState(false);
-    return (
-        <div>
-            <div>
-                <NavBar />
-            </div>
-        <React.Fragment>
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container">
-                    <h2 style={{fontWeight:'bold'}}>DATA USERS</h2>
-                </div>
-            </div>
-            <div className="container">
-                <Form>
-                    <Form.Group as={Row}>
-                    <Form.Label column sm="1">Cari: </Form.Label>
-                    <Col sm="5">
-                        <Form.Control type="text" placeholder="Role/Nama/Email"/>
-                    </Col>
-                    </Form.Group>
-                </Form>
-                <ButtonGroup className="mb-2 float-right">
-                    <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH USER  </Button>
-                </ButtonGroup>
-                <AddUsersModal 
-                    show={modalAdd}
-                    onHide={() => setModalAdd(false)}
-                />
-                <ShowAllUsers />
-                
-            </div>
-        </React.Fragment>
-        </div>
-    )
-}
+export default GetUsers;

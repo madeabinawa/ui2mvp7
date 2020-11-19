@@ -20,6 +20,7 @@ class GetUsers extends Component {
       .then(res => res.json())
       .then(parsedJSON =>
         parsedJSON.user.map(data => ({
+          getId: `${data.Id}`,
           getNama: `${data.nama}`,
           getAlamat: `${data.alamat}`,
           getHp: `${data.phone1}`,
@@ -44,13 +45,13 @@ class GetUsers extends Component {
       <div>
           {items.length > 0
             ? items.map(item => {
-                const { getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
+                const { getId, getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
                 return (
                   <div>
                       <Table striped bordered hover responsive>
                 <thead style={{textAlign:'center'}}>
                         <tr>
-                            
+                            <th>Id User</th>
                             <th>Nama User</th>
                             <th>Role</th>
                             <th>Status</th>
@@ -64,10 +65,10 @@ class GetUsers extends Component {
                     <tbody style={{textAlign:'center'}}>
                     <tr>
                             
-                            
+                            <td>{getId}</td>
                             <td>{getNama}</td>
                             <td>{getRole}</td>
-                            <td>{getStatus}</td>
+                            <td>{getStatus ? 'ENABLE': 'DISABLE'}</td>
                             <td>{getHp}</td>
                             <td>{getEmail1}</td>
                             <td>{getEmail2}</td>

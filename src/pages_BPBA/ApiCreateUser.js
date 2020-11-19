@@ -2,6 +2,37 @@ import React, { Component } from "react";
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 
 
+const options = [
+  {
+    label: "ENABLE",
+    value: 1,
+  },
+  {
+    label: "DISABLE",
+    value: 0,
+  },
+
+];
+
+const selectrole = [
+  { 
+    label: "Priority Customers (PCu)",
+    value: 1,
+  },
+  {
+    label: "Personal Banking Assistent (PBA)",
+    value: 2,
+  },
+  {
+    label: "Personal Banking Assistent Manager (PBAM)",
+    value: 3,
+  },
+  {
+    label: "Banking Premium Booking Administration (BPBA)",
+    value: 4,
+  },
+];
+
 class PostUsers extends Component {
   
     constructor(props) {
@@ -9,12 +40,12 @@ class PostUsers extends Component {
         this.state = {
           nama: '',
           alamat: '',
-          role_id: '',
+          role_id: null,
           email1: '',
           email2: '',
           phone1: '',
           phone2: '',
-          status: '',
+          status: null,
         };
     
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,7 +66,16 @@ class PostUsers extends Component {
     alert('data telah di tambahkan: ' + this.state.value);
     fetch('http://18.191.9.5:8090/user/create', {
         method: 'POST',
-        body: JSON.stringify(this.state)
+        body: JSON.stringify({
+          "nama": this.state.nama,
+          "alamat": this.state.alamat,
+          "email1": this.state.email1,
+          "email2": this.state.email2,
+          "phone1": this.state.phone1,
+          "phone2": this.state.phone2,
+          "role_id": parseFloat(this.state.role_id),
+          "status": parseFloat(this.state.status)
+        })
       }).then(function(response) {
         console.log(response)
         return response.json();
@@ -47,6 +87,17 @@ class PostUsers extends Component {
     return (
     <div>
       <Form onSubmit={this.handleSubmit}>
+
+      <Form.Group as={Row} controlId="formGroupStatus">
+                    <Form.Label column sm="2">Role: </Form.Label>
+                    <Col sm="10">
+                    <select className="form-control" name="role_id" value={this.state.role_id} onChange={this.handleInputChange}>
+                        {selectrole.map((option) => (
+                          <option value={option.value}>{option.label}</option>
+                        ))}
+                      </select>
+                    </Col>
+                </Form.Group>
           
           <Form.Group as={Row} controlId="formGroupName">
               <Form.Label column sm="2">Nama: </Form.Label>
@@ -80,8 +131,12 @@ class PostUsers extends Component {
                 </Form.Group>
                 <Form.Group as={Row} controlId="formGroupStatus">
                     <Form.Label column sm="2">Status: </Form.Label>
-                    <Col sm="3">
-                    <Form.Control name="status" type="number" value={this.state.status} onChange={this.handleInputChange} />
+                    <Col sm="4">
+                    <select className="form-control" name="status" value={this.state.status} onChange={this.handleInputChange}>
+                        {options.map((option) => (
+                          <option value={option.value}>{option.label}</option>
+                        ))}
+                      </select>
                     </Col>
                 </Form.Group>
                 <Button variant="success" type="submit" value="Submit">Simpan</Button>

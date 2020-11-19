@@ -14,38 +14,43 @@ class GetUsers extends Component {
     }
 
    /* SAMPLE UNTUK POST DATA */
+   componentDidMount() {
+    
+    fetch("http://18.191.9.5:8090/user/list")
+      .then(res => res.json())
+      .then(parsedJSON =>
+        parsedJSON.user.map(data => ({
+          getNama: `${data.nama}`,
+          getAlamat: `${data.alamat}`,
+          getHp: `${data.phone1}`,
+          getEmail1: `${data.email1}`,
+          getEmail2: `${data.email2}`,
+          getRole: `${data.role_id}`,
+          getStatus: `${data.status}`,
+        }))
+      )
+      .then(items =>
+        this.setState({
+          items,
+          isLoaded: false
+        })
+      )
+      .catch(error => console.log("parsing failed", error));
+  }
 
-    componentDidMount() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: 'React POST Request Example' })
-        };
-        fetch('http://18.191.9.5:8090/user/read', requestOptions)
-            .then(response => response.json())
-            //.then((data) => console.log('This is your data', data))
-            .then(data => this.setState({ 
-                postId: data.user.Id,
-                postNama: data.user.nama,
-                postHp: data.user.phone1,
-                postEmail1: data.user.email1,
-                postEmail2: data.email2,
-                postAlamat: data.user.alamat,
-                postRole: data.user.role_id,
-                postStatus: data.user.status
-            }));
-    }
-
-    render() {
-        const { postId, postAlamat, postNama, postEmail1, postEmail2, postHp, postRole, postStatus } = this.state;
-        
-        return (
-            <div>
-                <Table striped bordered hover responsive>
+  render() {
+    const { items } = this.state;
+    return (
+      <div>
+          {items.length > 0
+            ? items.map(item => {
+                const { getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
+                return (
+                  <div>
+                      <Table striped bordered hover responsive>
                 <thead style={{textAlign:'center'}}>
                         <tr>
-                            <th>No.</th>
-                            <th>ID User</th>
+                            
                             <th>Nama User</th>
                             <th>Role</th>
                             <th>Status</th>
@@ -58,15 +63,15 @@ class GetUsers extends Component {
                     </thead>
                     <tbody style={{textAlign:'center'}}>
                     <tr>
-                            <td>1</td>
-                            <td>{postId}</td>
-                            <td>{postNama}</td>
-                            <td>{postRole}</td>
-                            <td>{postStatus}</td>
-                            <td>{postHp}</td>
-                            <td>{postEmail1}</td>
-                            <td>{postEmail2}</td>
-                            <td>{postAlamat}</td>
+                            
+                            
+                            <td>{getNama}</td>
+                            <td>{getRole}</td>
+                            <td>{getStatus}</td>
+                            <td>{getHp}</td>
+                            <td>{getEmail1}</td>
+                            <td>{getEmail2}</td>
+                            <td>{getAlamat}</td>
                             <td style={{textAlign:'center'}}> 
                                 <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalEdit: !this.state.modalEdit})}> 
                                 <FontAwesomeIcon icon={faEdit} /> UBAH </Button> 
@@ -78,9 +83,14 @@ class GetUsers extends Component {
                         </tr>
                     </tbody>
                 </Table>
-            </div>
-        );
-    }
+                  </div>
+                );
+              })
+            : null}
+      </div>
+    );
+  }
+   
 }
 function EditUsersModal(props) {
     return (

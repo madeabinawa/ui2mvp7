@@ -10,6 +10,7 @@ import GantiPassword from './pages_BPBA/UbahPassPage';
 import LaporanPBAM from './pages_BPAM/Laporan';
 import CreateUser from './pages_BPBA/ApiCreateUser';
 import HomePBA from './pages_PBA/PCuPage';
+import Schedule from './pages_PBA/SchedulePage';
 
 function routes() {
     return(
@@ -25,6 +26,7 @@ function routes() {
             <Route exact path="/laporanPage" component={LaporanPBAM} />
             <Route exact path="/createUser" component={CreateUser} />
             <Route exact path="/pcuPage" component={HomePBA} />
+            <Route exact path="/schedulePage" component={Schedule} />
         </BrowserRouter>
     );
 }

@@ -3,20 +3,36 @@ import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstr
 
 
 class PostUsers extends Component {
+  
     constructor(props) {
         super(props);
-        this.state = {nama: ''};
+        this.state = {
+          nama: '',
+          alamat: '',
+          role_id: '',
+          email1: '',
+          email2: '',
+          phone1: '',
+          phone2: '',
+          status: '',
+        };
     
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
       }
     
-      handleChange(event) {
-        this.setState({nama: event.target.value});
+      handleInputChange(event) {
+        const target = event.target;
+       // const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.type === 'select' ? target.selected : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
       }
 
   handleSubmit = (event) => {
-    alert('A name was submitted: ' + this.state.value);
+    alert('data telah di tambahkan: ' + this.state.value);
     fetch('http://18.191.9.5:8090/user/create', {
         method: 'POST',
         body: JSON.stringify(this.state)
@@ -29,13 +45,51 @@ class PostUsers extends Component {
 }
   render() {
     return (
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+    <div>
+      <Form onSubmit={this.handleSubmit}>
+          
+          <Form.Group as={Row} controlId="formGroupName">
+              <Form.Label column sm="2">Nama: </Form.Label>
+              <Col sm="10">
+                  <Form.Control name="nama" type="text" value={this.state.nama} onChange={this.handleInputChange} />
+              </Col>
+          </Form.Group>
+          <Form.Group as={Row} controlId="formGroupName">
+              <Form.Label column sm="2">Alamat: </Form.Label>
+              <Col sm="10">
+                  <Form.Control name="alamat" type="text" value={this.state.alamat} onChange={this.handleInputChange} />
+              </Col>
+          </Form.Group>
+                <Form.Group as={Row} controlId="formGroupName">
+                    <Form.Label column sm="2">No. Handphone </Form.Label>
+                    <Col sm="10">
+                        <Form.Control name="phone1" type="text" value={this.state.phone1} onChange={this.handleInputChange} />
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail">
+                    <Form.Label column sm="2">Email 1: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control name="email1" type="email" value={this.state.email1} onChange={this.handleInputChange} />
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupEmail2">
+                    <Form.Label column sm="2">Email 2: </Form.Label>
+                    <Col sm="10">
+                        <Form.Control name="email2" type="email" value={this.state.email2} onChange={this.handleInputChange} />
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row} controlId="formGroupStatus">
+                    <Form.Label column sm="2">Status: </Form.Label>
+                    <Col sm="3">
+                    <Form.Control name="status" type="number" value={this.state.status} onChange={this.handleInputChange} />
+                    </Col>
+                </Form.Group>
+                <Button variant="success" type="submit" value="Submit">Simpan</Button>
+            </Form>
+            
+
+        
+      </div>
     );
   }
 

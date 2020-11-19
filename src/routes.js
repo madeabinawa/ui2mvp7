@@ -9,6 +9,7 @@ import JadwalBPA from './pages_BPAM/JadwalPBA';
 import GantiPassword from './pages_BPBA/UbahPassPage';
 import LaporanPBAM from './pages_BPAM/Laporan';
 import CreateUser from './pages_BPBA/ApiCreateUser';
+import HomePBA from './pages_PBA/PCuPage';
 
 function routes() {
     return(
@@ -23,6 +24,7 @@ function routes() {
             <Route exact path="/ubahPassPage" component={GantiPassword} />
             <Route exact path="/laporanPage" component={LaporanPBAM} />
             <Route exact path="/createUser" component={CreateUser} />
+            <Route exact path="/pcuPage" component={HomePBA} />
         </BrowserRouter>
     );
 }

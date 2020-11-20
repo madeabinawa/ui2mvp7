@@ -134,7 +134,8 @@ function CancelModal(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={props.onHide}>Kirim</Button>
+                <Button variant="success" >Kirim</Button>{' '}
+                <Button variant="danger" onClick={props.onHide}>Batal</Button>
             </Modal.Footer>
         </Modal>
     )
@@ -160,7 +161,8 @@ function FeedbackModal (props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={props.onHide}>Kirim</Button>
+                <Button variant="success">Kirim</Button>{' '}
+                <Button variant="danger" onClick={props.onHide}>Batal</Button>
             </Modal.Footer>
         </Modal>
     )
@@ -186,7 +188,8 @@ function DeclineModal (props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={props.onHide}>Kirim</Button>
+                <Button variant="success">Kirim</Button>{' '}
+                <Button variant="danger" onClick={props.onHide}>Batal</Button>
             </Modal.Footer>
         </Modal>
     )
@@ -212,7 +215,8 @@ function UpdateDeclineModal (props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="success" onClick={props.onHide}>Kirim</Button>
+                <Button variant="success" >Kirim</Button>{' '}
+                <Button variant="danger" onClick={props.onHide}>Batal</Button>
             </Modal.Footer>
         </Modal>
     )

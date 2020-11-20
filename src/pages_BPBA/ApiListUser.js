@@ -41,57 +41,46 @@ class GetUsers extends Component {
 
   render() {
     const { items } = this.state;
-    return (
-      <div>
-          {items.length > 0
-            ? items.map(item => {
-                const { getId, getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
-                return (
-                  <div>
-                      <Table striped bordered hover responsive>
-                <thead style={{textAlign:'center'}}>
+    return(
+        <Table striped bordered hover responsive>
+            <thead style={{textAlign:'center'}}>
+                <tr>
+                    <th>Id User</th>
+                    <th>Nama User</th>
+                    <th>Role</th>
+                    <th>Email 1</th>
+                    <th>Email 2</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody style={{textAlign:'center'}}>
+                {items.length > 0 ? items.map(item => {
+                    const { getId, getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
+                    return(
                         <tr>
-                            <th>Id User</th>
-                            <th>Nama User</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>No.Handphone</th>
-                            <th>Email 1</th>
-                            <th>Email 2</th>
-                            <th>Alamat</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody style={{textAlign:'center'}}>
-                    <tr>
-                            
                             <td>{getId}</td>
                             <td>{getNama}</td>
                             <td>{getRole}</td>
-                            <td>{getStatus ? 'ENABLE': 'DISABLE'}</td>
-                            <td>{getHp}</td>
                             <td>{getEmail1}</td>
                             <td>{getEmail2}</td>
-                            <td>{getAlamat}</td>
+                            <td>{getStatus ? 'ENABLE': 'DISABLE'}</td>
                             <td style={{textAlign:'center'}}> 
-                                <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalEdit: !this.state.modalEdit})}> 
+                            <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalEdit: !this.state.modalEdit})}> 
                                 <FontAwesomeIcon icon={faEdit} /> UBAH </Button> 
                             </td>
                             <EditUsersModal 
                                 show={this.state.modalEdit}
                                 onHide={() => this.setState({modalEdit: !this.state.modalEdit})}
-                                />
+                            />
                         </tr>
-                    </tbody>
-                </Table>
-                  </div>
-                );
-              })
+                    )
+                })
             : null}
-      </div>
-    );
+            </tbody>
+        </Table>
+    )
   }
-   
 }
 function EditUsersModal(props) {
     return (

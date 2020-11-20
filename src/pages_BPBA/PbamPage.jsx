@@ -28,6 +28,7 @@ export default function PbamPage() {
                                     <option>Revi Yey</option>
                                 </Form.Control>
                             </Col>
+                            <Button type="submit" variant="primary"> TAMPIL </Button> 
                         </Form.Group>
                     </Form>
                     

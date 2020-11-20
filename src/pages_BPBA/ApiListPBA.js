@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button, Modal, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 class GetUsers extends Component {
@@ -9,7 +9,7 @@ class GetUsers extends Component {
     super(props);
     this.state = {
         items: [],
-        modalAdd: false,
+        modalDelete: false,
         };
     }
 
@@ -66,12 +66,12 @@ class GetUsers extends Component {
                             <td>{getPbamId}</td>
                             
                             <td style={{textAlign:'center'}}> 
-                                <Button style={{"width" : "100%"}} variant="warning" onClick={() => this.setState({modalAdd: !this.state.modalAdd})}> 
-                                <FontAwesomeIcon icon={faEdit} /> TAMBAH </Button> 
+                                <Button style={{"width" : "100%"}} variant="danger" onClick={() => this.setState({modalDelete: !this.state.modalDelete})}> 
+                                <FontAwesomeIcon icon={faTrash} /> DELETE </Button> 
                             </td>
-                            <AddPBAModal 
-                                show={this.state.modalAdd}
-                                onHide={() => this.setState({modalAdd: !this.state.modalAdd})}
+                            <DeletePBAModal 
+                                show={this.state.modalDelete}
+                                onHide={() => this.setState({modalDelete: !this.state.modalDelete})}
                                 />
                         </tr>
                     </tbody>
@@ -86,7 +86,7 @@ class GetUsers extends Component {
    
 }
 
-function AddPBAModal(props) {
+function DeletePBAModal(props) {
     return (
         <Modal
         {...props}
@@ -99,11 +99,11 @@ function AddPBAModal(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <p>Apakah anda yakin menambahkan Nina Marlina sebagai PBA Revi Yay?</p>
+        <p>Apakah anda yakin menghapus data ini?</p>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="success">Simpan</Button>
-            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+            <Button variant="success">Ya</Button>
+            <Button variant="danger" onClick={props.onHide}>Tidak</Button>
         </Modal.Footer>
         </Modal>
     )

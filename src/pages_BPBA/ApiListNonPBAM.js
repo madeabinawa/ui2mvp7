@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col, Row, Button, Modal, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 class GetUsers extends Component {
@@ -64,12 +64,12 @@ class GetUsers extends Component {
                             <td>{getPbamId}</td>
                             
                             <td style={{textAlign:'center'}}> 
-                                <Button style={{"width" : "100%"}} variant="danger" onClick={() => this.setState({modalDelete: !this.state.modalDelete})}> 
-                                <FontAwesomeIcon icon={faTrash} /> DELETE </Button> 
+                                <Button style={{"width" : "100%"}} variant="success" onClick={() => this.setState({modalAdd: !this.state.modalAdd})}> 
+                                <FontAwesomeIcon icon={faPlus} /> TAMBAH </Button> 
                             </td>
-                            <DeletePBAModal 
-                                show={this.state.modalDelete}
-                                onHide={() => this.setState({modalDelete: !this.state.modalDelete})}
+                            <AddPBAModal 
+                                show={this.state.modalAdd}
+                                onHide={() => this.setState({modalAdd: !this.state.modalAdd})}
                                 />
                         </tr>
                     </tbody>
@@ -84,7 +84,7 @@ class GetUsers extends Component {
    
 }
 
-function DeletePBAModal(props) {
+function AddPBAModal(props) {
     return (
         <Modal
         {...props}
@@ -97,7 +97,7 @@ function DeletePBAModal(props) {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <p>Apakah anda yakin menghapus Data Ini?</p>
+        <p>Apakah anda yakin menambahkan ? </p>
         </Modal.Body>
         <Modal.Footer>
             <Button variant="success">Ya</Button>

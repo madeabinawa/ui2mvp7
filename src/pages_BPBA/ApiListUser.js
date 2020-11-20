@@ -58,7 +58,7 @@ class GetUsers extends Component {
                 {items.length > 0 ? items.map(item => {
                     const { getId, getNama, getAlamat, getHp, getEmail1, getEmail2, getRole, getStatus } = item;
                     return(
-                        <tr>
+                        <tr key={getId}>
                             <td>{getId}</td>
                             <td>{getNama}</td>
                             <td>{getRole}</td>

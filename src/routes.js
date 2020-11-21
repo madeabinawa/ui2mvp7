@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import HomeBPBA from './pages_BPBA/UsersPage';
 import SetPBAM from './pages_BPBA/PbamPage';
 import Jadwal from './pages_BPBA/JadwalPage';
-import Login from './login/Login';
+import Login from './login/ApiLogin';
 import HomePBAM from './pages_BPAM/PbaPages';
 import JadwalBPA from './pages_BPAM/JadwalPBA';
 import GantiPassword from './pages_BPBA/UbahPassPage';

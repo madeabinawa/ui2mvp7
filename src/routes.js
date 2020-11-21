@@ -32,7 +32,7 @@ function routes() {
             <Route exact path="/createUser" component={CreateUser} />
             <Route exact path="/pcuPage" component={HomePBA} />
             <Route exact path="/schedulePage" component={Schedule} />
-			//Role
+			{/* //Role */}
 			<Route exact path="/api/v1/role/create" component={CreateRole} />
 			<Route exact path="/api/v1/role/update" component={UpdateRole} />
 			<Route exact path="/api/v1/role/delete" component={DeleteRole} />			

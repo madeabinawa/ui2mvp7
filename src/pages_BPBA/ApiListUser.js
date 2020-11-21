@@ -14,32 +14,32 @@ class GetUsers extends Component {
     }
 
    /* SAMPLE UNTUK POST DATA */
-   componentDidMount() {
+    componentDidMount() {
     
-    fetch("http://18.191.9.5:8090/user/list")
-      .then(res => res.json())
-      .then(parsedJSON =>
-        parsedJSON.user.map(data => ({
-          getId: `${data.Id}`,
-          getNama: `${data.nama}`,
-          getAlamat: `${data.alamat}`,
-          getHp: `${data.phone1}`,
-          getEmail1: `${data.email1}`,
-          getEmail2: `${data.email2}`,
-          getRole: `${data.role_id}`,
-          getStatus: `${data.status}`,
-        }))
-      )
-      .then(items =>
-        this.setState({
-          items,
-          isLoaded: false
-        })
-      )
-      .catch(error => console.log("parsing failed", error));
-  }
+        fetch("http://18.191.9.5:8090/user/list")
+            .then(res => res.json())
+            .then(parsedJSON =>
+            parsedJSON.user.map(data => ({
+                getId: `${data.Id}`,
+                getNama: `${data.nama}`,
+                getAlamat: `${data.alamat}`,
+                getHp: `${data.phone1}`,
+                getEmail1: `${data.email1}`,
+                getEmail2: `${data.email2}`,
+                getRole: `${data.role_id}`,
+                getStatus: `${data.status}`,
+            }))
+            )
+            .then(items =>
+                this.setState({
+                    items,
+                    isLoaded: false
+            })
+            )
+            .catch(error => console.log("parsing failed", error));
+    }
 
-  render() {
+    render() {
     const { items } = this.state;
     return(
         <Table striped bordered hover responsive>
@@ -80,7 +80,7 @@ class GetUsers extends Component {
             </tbody>
         </Table>
     )
-  }
+    }
 }
 function EditUsersModal(props) {
     return (

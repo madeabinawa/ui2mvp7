@@ -26,21 +26,35 @@ class ApiLogin extends Component {
         });
       }
 
+  // handleSubmit = (event) => {    
+  //   fetch('http://18.191.9.5:8090/user/login', {
+  //       method: 'Post',
+  //       body: JSON.stringify({
+	// 	//Json yang dikirim
+  //         "email1": this.state.email,
+  //         "password": this.state.pwd          
+  //       })
+  //     }).then(function(response) {
+  //       console.log(response)
+  //       return response.json();
+  //     });
+	// //localStorage.setItem("token", data.data.token);
+  //   event.preventDefault();
+  // }
+
   handleSubmit = (event) => {    
     fetch('http://18.191.9.5:8090/user/login', {
         method: 'Post',
         body: JSON.stringify({
-		//Json yang dikirim
+		  //Json yang dikirim
           "email1": this.state.email,
           "password": this.state.pwd          
         })
-      }).then(function(response) {
-        console.log(response)
-        return response.json();
-      });
-	//localStorage.setItem("token", data.data.token);
+      }).then((response) => response.json())
+      .then((data) => console.log('This is your data', data));;
+      //localStorage.setItem("token", data.data.token);
     event.preventDefault();
-}
+  }
   render() {
     return (		
 		<div className="Login">

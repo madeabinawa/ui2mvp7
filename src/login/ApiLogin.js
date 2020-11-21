@@ -53,13 +53,54 @@ class ApiLogin extends Component {
 					</Form.Group>
 					<Form.Group controId="formGroupPassword">                            
 						<Form.Control name="pwd" type="password" placeholder="Enter Password" value={this.state.pwd} onChange={this.handleInputChange} />
-					</Form.Group>                        
+					</Form.Group>         
+					<div className="a" onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</div>
+					<ResetModal 
+                        show={this.state.modalReset}
+                        onHide={() => this.setState({modalReset: !this.state.modalReset})}
+                    />
 					<Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>                        
 				</Form>
 			</div>
 		</div>				
     );
   }
+}
+
+function ResetModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Reset Password
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>                                        
+                    <Form.Group as={Row} controlId="formGroupEmail">
+                        <Form.Label column sm="2">Email : </Form.Label>
+                        <Col sm="10">
+                            <Form.Control type="email"/>
+                        </Col>
+                    </Form.Group>   
+				<Row>
+                    <Col sm="2" />
+                    <Col sm="3">
+                        <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
+                    </Col>
+					<Col sm="3">
+                        <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
+                    </Col>
+                </Row>																					
+                </Form>                
+            </Modal.Body>            
+        </Modal>
+    )
 }
 
 export default ApiLogin;

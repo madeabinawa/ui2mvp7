@@ -12,6 +12,11 @@ import CreateUser from './pages_BPBA/ApiCreateUser';
 import HomePBA from './pages_PBA/PCuPage';
 import Schedule from './pages_PBA/SchedulePage';
 
+//Role
+import CreateRole from './mRole/RoleApiCreate';
+import UpdateRole from './mRole/RoleApiUpdate';
+import DeleteRole from './mRole/RoleApiDelete';
+
 function routes() {
     return(
         <BrowserRouter>
@@ -21,12 +26,16 @@ function routes() {
             <Route exact path="/jadwalPage" component={Jadwal} />
             <Route exact path="/pbaPage" component={HomePBAM} />
             <Route exact path="/jadwalPBA" component={JadwalBPA} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login" component={Login} />			
             <Route exact path="/ubahPassPage" component={GantiPassword} />
             <Route exact path="/laporanPage" component={LaporanPBAM} />
             <Route exact path="/createUser" component={CreateUser} />
             <Route exact path="/pcuPage" component={HomePBA} />
             <Route exact path="/schedulePage" component={Schedule} />
+			//Role
+			<Route exact path="/api/v1/role/create" component={CreateRole} />
+			<Route exact path="/api/v1/role/update" component={UpdateRole} />
+			<Route exact path="/api/v1/role/delete" component={DeleteRole} />			
         </BrowserRouter>
     );
 }

@@ -66,7 +66,7 @@ class AddUsersModal extends Component {
     }
 
     handleSubmit = (event) => {
-        alert('data telah di tambahkan: ' + this.state.value);
+        // alert('data telah di tambahkan: ' + this.state.value);
         fetch('http://18.191.9.5:8090/user/create', {
             method: 'POST',
             body: JSON.stringify({
@@ -84,6 +84,8 @@ class AddUsersModal extends Component {
             console.log(response)
             return response.json();
         });
+        this.props.onHide();
+        window.location.reload();
         event.preventDefault();
 
     }
@@ -151,13 +153,6 @@ class AddUsersModal extends Component {
                             </select>
                             </Col>
                         </Form.Group>
-                        {/* <Row>
-                            <Col sm="2" />
-                            <Col sm="4">
-                                <Button variant="success" type="submit" value="Submit">Simpan</Button> {' '}
-                                <Button variant="danger" onClick={this.props.onHide}>Batal</Button>
-                            </Col>
-                        </Row> */}
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -168,69 +163,6 @@ class AddUsersModal extends Component {
         )
     }
 }
-
-// function AddUsersModal(props) {
-//     return (
-//         <Modal
-//         {...props}
-//         size="lg"
-//         aria-labelledby="contained-modal-title-vcenter"
-//         centered
-//         >
-//         <Modal.Header closeButton>
-//             <Modal.Title id="contained-modal-title-vcenter">
-//             Tambah User
-//             </Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//         <Form>
-//                 <Form.Group as={Row} controlId="formGroupRole">
-//                     <Form.Label column sm="2">Role: </Form.Label>
-//                     <Col sm="10">
-//                         <Form.Control as="select" defaultValue="Choose...">
-//                             <option>Priority Customers (PCu)</option>
-//                             <option>Personal Banking Assistent (PBA)</option>
-//                             <option>Personal Banking Assistent Manager (PBAM) </option>
-//                             <option>Banking Premium Booking Administration (BPBA) </option>
-//                         </Form.Control>
-//                     </Col>
-//                 </Form.Group>
-//                 <Form.Group as={Row} controlId="formGroupName">
-//                     <Form.Label column sm="2">Nama: </Form.Label>
-//                     <Col sm="10">
-//                         <Form.Control type="text"/>
-//                     </Col>
-//                 </Form.Group>
-//                 <Form.Group as={Row} controlId="formGroupEmail">
-//                     <Form.Label column sm="2">Email 1: </Form.Label>
-//                     <Col sm="10">
-//                         <Form.Control type="email"/>
-//                     </Col>
-//                 </Form.Group>
-//                 <Form.Group as={Row} controlId="formGroupEmail2">
-//                     <Form.Label column sm="2">Email 2: </Form.Label>
-//                     <Col sm="10">
-//                         <Form.Control type="email"/>
-//                     </Col>
-//                 </Form.Group>
-//                 <Form.Group as={Row} controlId="formGroupStatus">
-//                     <Form.Label column sm="2">Status: </Form.Label>
-//                     <Col sm="3">
-//                         <Form.Control as="select" defaultValue="Choose...">
-//                             <option>Enable</option>
-//                             <option>Disable</option>
-//                         </Form.Control>
-//                     </Col>
-//                 </Form.Group>
-//             </Form>
-//         </Modal.Body>
-//         <Modal.Footer>
-//             <Button variant="success">Simpan</Button>
-//             <Button variant="danger" onClick={props.onHide}>Batal</Button>
-//         </Modal.Footer>
-//         </Modal>
-//     )
-// }
 
 export default function UsersPage() {
     const[modalAdd, setModalAdd] = useState(false);

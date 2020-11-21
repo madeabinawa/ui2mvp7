@@ -47,8 +47,7 @@ class ApiLogin extends Component {
 			<div className="auth-inner">
 			<h1 style={{textAlign:'center'}}><FontAwesomeIcon icon={faUserCircle} /> </h1>
 				<h4 style={{textAlign:'center', marginBottom:25}}>PLEASE LOGIN</h4>
-				<Form onSubmit={this.handleSubmit}>
-				/*Sesuaikan dengan Fiel database*/
+				<Form onSubmit={this.handleSubmit}>				
 					<Form.Group controId="formGroupEmail">                            
 						<Form.Control name="email" type="text" placeholder="Enter Email" value={this.state.email} onChange={this.handleInputChange} />
 					</Form.Group>

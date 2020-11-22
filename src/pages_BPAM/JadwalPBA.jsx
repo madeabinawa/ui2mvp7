@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import NavBar from '../navbar/NavbarBPBA';
+import NavBar from '../navbar/NavbarPBAM';
 import { Button, Table, Form, Row, Col, Modal, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'

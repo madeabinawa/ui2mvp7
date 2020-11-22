@@ -2,6 +2,8 @@ import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import LogoBRI from '../Assets/BANK_BRI_logo.svg'
 import Users from '../Assets/user.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell} from '@fortawesome/free-solid-svg-icons'
 
 export default function NavbarPBA() {
     return (
@@ -19,6 +21,7 @@ export default function NavbarPBA() {
                     <Nav.Link href="/schedulePage">Jadwal Pertemuan</Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
+                    <Nav.Link><FontAwesomeIcon icon={faBell} /></Nav.Link>
                     <NavDropdown
                         title={
                             <div>

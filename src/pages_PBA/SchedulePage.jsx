@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import NavBar from '../navbar/NavbarPBA';
 import { Button, Table, Form, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck, faEdit, faComment, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -224,6 +225,9 @@ function UpdateDeclineModal (props) {
 export default function SchedulePage() {
     return (
         <div>
+            <div>
+                <NavBar />
+            </div>
             <div className="jumbotron jumbotron-fluid">
                 <div className="container">
                     <h2 style={{ fontWeight: 'bold' }}> JADWAL PERTEMUAN </h2>

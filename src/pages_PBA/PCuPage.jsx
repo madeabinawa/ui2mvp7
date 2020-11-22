@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import NavBar from '../navbar/NavbarPBA';
 import { Button, Table, Form, Row, Col, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -113,6 +114,9 @@ export default class PCuPage extends Component {
     render() {
         return (
             <div>
+                <div>
+                    <NavBar />
+                </div>
                 <div className="jumbotron jumbotron-fluid">
                     <div className="container">
                         <h2 style={{ fontWeight: 'bold' }}>DATA PCu </h2>

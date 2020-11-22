@@ -19,19 +19,19 @@ const options = [
 const selectrole = [
     { 
         label: "Priority Customers (PCu)",
-        value: 1,
+        value: 4,
     },
     {
         label: "Personal Banking Assistent (PBA)",
-        value: 2,
+        value: 1,
     },
     {
         label: "Personal Banking Assistent Manager (PBAM)",
-        value: 3,
+        value: 2,
     },
     {
         label: "Banking Premium Booking Administration (BPBA)",
-        value: 4,
+        value: 3,
     },
 ];
 

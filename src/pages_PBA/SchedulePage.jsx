@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import ReactStars from 'react-rating-stars-component';
 import NavBar from '../navbar/NavbarPBA';
 import { Button, Table, Form, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -142,6 +143,9 @@ function CancelModal(props) {
     )
 }
 function FeedbackModal (props) {
+    const ratingChanged = (newRating) => {
+        console.log(newRating);
+    };
     return(
         <Modal
         {...props}
@@ -156,8 +160,15 @@ function FeedbackModal (props) {
             <Modal.Body>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Pesan</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <ReactStars
+                            count={5}
+                            onChange={ratingChanged}
+                            size={40}
+                            activeColor="#ffd700"
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control as="textarea" rows={3} placeholder="Pesan"/>
                     </Form.Group>
                 </Form>
             </Modal.Body>

@@ -3,7 +3,7 @@ import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstr
 import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class ApiLogin extends Component {  
     constructor(props) {
@@ -55,31 +55,39 @@ class ApiLogin extends Component {
       });
     event.preventDefault();
   }
+
   render() {
-    return (		
-		<div className="Login">
-			<div className="auth-inner">
-			<h1 style={{textAlign:'center'}}><FontAwesomeIcon icon={faUserCircle} /> </h1>
-				<h4 style={{textAlign:'center', marginBottom:25}}>PLEASE LOGIN</h4>
-				<Form onSubmit={(e)=>this.handleSubmit(e,this)}>				
-					<Form.Group controlId="formGroupEmail">                            
-						<Form.Control name="email" type="text" placeholder="Enter Email" value={this.state.email} onChange={this.handleInputChange} />
-					</Form.Group>
-					<Form.Group controlId="formGroupPassword">                            
-						<Form.Control name="pwd" type="password" placeholder="Enter Password" value={this.state.pwd} onChange={this.handleInputChange} />
-					</Form.Group>         
-					<Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>
-          <div style={{textAlign:"center"}}>
-          <a style={{fontSize:13}} href={("#")} onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</a>
+    const isToken = this.state.token
+    if(isToken === '') 
+    {
+      return (		
+        <div className="Login">
+          <div className="auth-inner">
+          <h1 style={{textAlign:'center'}}><FontAwesomeIcon icon={faUserCircle} /> </h1>
+            <h4 style={{textAlign:'center', marginBottom:25}}>PLEASE LOGIN</h4>
+            <Form onSubmit={(e)=>this.handleSubmit(e,this)}>				
+              <Form.Group controlId="formGroupEmail">                            
+                <Form.Control name="email" type="text" placeholder="Enter Email" value={this.state.email} onChange={this.handleInputChange} />
+              </Form.Group>
+              <Form.Group controlId="formGroupPassword">                            
+                <Form.Control name="pwd" type="password" placeholder="Enter Password" value={this.state.pwd} onChange={this.handleInputChange} />
+              </Form.Group>         
+              <Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>
+              <div style={{textAlign:"center"}}>
+              <a style={{fontSize:13}} href={("#")} onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</a>
+              </div>
+              <ResetModal 
+                show={this.state.modalReset}
+                onHide={() => this.setState({modalReset: !this.state.modalReset})}
+                />                        
+            </Form>
           </div>
-					<ResetModal 
-            show={this.state.modalReset}
-            onHide={() => this.setState({modalReset: !this.state.modalReset})}
-            />                        
-				</Form>
-			</div>
-		</div>				
-    );
+        </div>				
+      );
+    }
+    else {
+      return(<Redirect to="/userPage" />)  
+      }
   }
 }
 
@@ -101,7 +109,7 @@ class ResetModal extends Component {
         })
       }).then((response) => response.json())
       .then((data) => console.log('This is your data', data));
-      // this.props.onHide();
+      this.props.onHide();
       // window.location.reload();
       event.preventDefault();
     }

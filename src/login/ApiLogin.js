@@ -15,6 +15,7 @@ class ApiLogin extends Component {
           token: '',
         };    
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
     
       handleInputChange(event) {
@@ -26,20 +27,7 @@ class ApiLogin extends Component {
           [name]: value
         });
       }
-  
-      // let me = this.
-  handleSubmit = (event) => {    
-    fetch('http://18.191.9.5:8090/user/login', {
-        method: 'Post',
-        body: JSON.stringify({
-		  //Json yang dikirim
-          "email1": this.state.email,
-          "password": this.state.pwd          
-        })
-      }).then((response) => response.json())
-      .then((data) => console.log('This is your data', data));
-    event.preventDefault();
-  }
+
   // handleSubmit = (event) => {    
   //   fetch('http://18.191.9.5:8090/user/login', {
   //       method: 'Post',
@@ -49,23 +37,35 @@ class ApiLogin extends Component {
   //         "password": this.state.pwd          
   //       })
   //     }).then((response) => response.json())
-  //     .then(function (data)
-  //     { console.log(data)
-  //       this.setState({ token: data.role.Id})
-  //     });
+  //     .then((data) => console.log('This is your data', data));
   //   event.preventDefault();
   // }
+  handleSubmit = (event, me) => {    
+    fetch('http://18.191.9.5:8090/user/login', {
+        method: 'Post',
+        body: JSON.stringify({
+		  //Json yang dikirim
+          "email1": this.state.email,
+          "password": this.state.pwd          
+        })
+      }).then((response) => response.json())
+      .then(function (data)
+      { console.log(data)
+        me.setState({ token: data.user.role.Id})
+      });
+    event.preventDefault();
+  }
   render() {
     return (		
 		<div className="Login">
 			<div className="auth-inner">
 			<h1 style={{textAlign:'center'}}><FontAwesomeIcon icon={faUserCircle} /> </h1>
 				<h4 style={{textAlign:'center', marginBottom:25}}>PLEASE LOGIN</h4>
-				<Form onSubmit={this.handleSubmit}>				
-					<Form.Group controId="formGroupEmail">                            
+				<Form onSubmit={(e)=>this.handleSubmit(e,this)}>				
+					<Form.Group controlId="formGroupEmail">                            
 						<Form.Control name="email" type="text" placeholder="Enter Email" value={this.state.email} onChange={this.handleInputChange} />
 					</Form.Group>
-					<Form.Group controId="formGroupPassword">                            
+					<Form.Group controlId="formGroupPassword">                            
 						<Form.Control name="pwd" type="password" placeholder="Enter Password" value={this.state.pwd} onChange={this.handleInputChange} />
 					</Form.Group>         
 					<Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>
@@ -133,43 +133,7 @@ class ResetModal extends Component {
           </Modal.Footer>            
       </Modal>
     )
-  }
 }
-
-// function ResetModal(props) {
-//   return (
-//       <Modal
-//           {...props}
-//           size="lg"
-//           aria-labelledby="contained-modal-title-vcenter"
-//           centered
-//       >
-//           <Modal.Header closeButton>
-//               <Modal.Title id="contained-modal-title-vcenter">
-//                   Reset Password
-//               </Modal.Title>
-//           </Modal.Header>
-//           <Modal.Body>
-//               <Form>                                        
-//                   <Form.Group as={Row} controlId="formGroupEmail">
-//                       <Form.Label column sm="2">Email : </Form.Label>
-//                       <Col sm="10">
-//                           <Form.Control type="email"/>
-//                       </Col>
-//                   </Form.Group>   
-//               <Row>
-//                   <Col sm="8" />
-//                   <Col sm="2">
-//                       <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
-//                   </Col>
-//                 <Col sm="2">
-//                       <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
-//                   </Col>
-//               </Row>																					
-//               </Form>                
-//           </Modal.Body>            
-//       </Modal>
-//   )
-// }
+}
 
 export default ApiLogin;

@@ -92,7 +92,7 @@ function ResetModal(props) {
                     <Col sm="2">
                         <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
                     </Col>
-				        	<Col sm="2">
+				      	<Col sm="2">
                         <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
                     </Col>
                 </Row>																					

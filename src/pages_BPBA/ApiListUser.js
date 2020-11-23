@@ -26,7 +26,7 @@ class GetUsers extends Component {
                 getHp: `${data.phone1}`,
                 getEmail1: `${data.email1}`,
                 getEmail2: `${data.email2}`,
-                getRole: `${data.role_id}`,
+                getRole: `${data.role.name}`,
                 getStatus: `${data.status}`,
             }))
             )

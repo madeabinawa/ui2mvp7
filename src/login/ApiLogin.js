@@ -51,12 +51,14 @@ class ApiLogin extends Component {
 					<Form.Group controId="formGroupPassword">                            
 						<Form.Control name="pwd" type="password" placeholder="Enter Password" value={this.state.pwd} onChange={this.handleInputChange} />
 					</Form.Group>         
-					<div className="a" onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</div>
+					<Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>
+          <div style={{textAlign:"center"}}>
+          <a style={{fontSize:13}} href={("#")} onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</a>
+          </div>
 					<ResetModal 
                         show={this.state.modalReset}
                         onHide={() => this.setState({modalReset: !this.state.modalReset})}
-                    />
-					<Button variant="primary" type="submit" className="btn btn-primary btn-block">LOGIN</Button>                        
+                    />                        
 				</Form>
 			</div>
 		</div>				
@@ -86,11 +88,11 @@ function ResetModal(props) {
                         </Col>
                     </Form.Group>   
 				<Row>
-                    <Col sm="2" />
-                    <Col sm="3">
+                    <Col sm="8" />
+                    <Col sm="2">
                         <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
                     </Col>
-					<Col sm="3">
+				        	<Col sm="2">
                         <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
                     </Col>
                 </Row>																					

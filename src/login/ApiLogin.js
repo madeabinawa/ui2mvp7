@@ -12,6 +12,7 @@ class ApiLogin extends Component {
         this.state = {
           email: '',
           pwd: '',
+          token: '',
         };    
         this.handleInputChange = this.handleInputChange.bind(this);
       }
@@ -25,7 +26,8 @@ class ApiLogin extends Component {
           [name]: value
         });
       }
-
+  
+      // let me = this.
   handleSubmit = (event) => {    
     fetch('http://18.191.9.5:8090/user/login', {
         method: 'Post',
@@ -35,9 +37,24 @@ class ApiLogin extends Component {
           "password": this.state.pwd          
         })
       }).then((response) => response.json())
-      .then((data) => console.log('This is your data', data.role.Id));
+      .then((data) => console.log('This is your data', data));
     event.preventDefault();
   }
+  // handleSubmit = (event) => {    
+  //   fetch('http://18.191.9.5:8090/user/login', {
+  //       method: 'Post',
+  //       body: JSON.stringify({
+	// 	  //Json yang dikirim
+  //         "email1": this.state.email,
+  //         "password": this.state.pwd          
+  //       })
+  //     }).then((response) => response.json())
+  //     .then(function (data)
+  //     { console.log(data)
+  //       this.setState({ token: data.role.Id})
+  //     });
+  //   event.preventDefault();
+  // }
   render() {
     return (		
 		<div className="Login">
@@ -56,9 +73,9 @@ class ApiLogin extends Component {
           <a style={{fontSize:13}} href={("#")} onClick={() => this.setState({modalReset: !this.state.modalReset})}>Reset Password</a>
           </div>
 					<ResetModal 
-                        show={this.state.modalReset}
-                        onHide={() => this.setState({modalReset: !this.state.modalReset})}
-                    />                        
+            show={this.state.modalReset}
+            onHide={() => this.setState({modalReset: !this.state.modalReset})}
+            />                        
 				</Form>
 			</div>
 		</div>				
@@ -66,40 +83,93 @@ class ApiLogin extends Component {
   }
 }
 
-function ResetModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Reset Password
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>                                        
-                    <Form.Group as={Row} controlId="formGroupEmail">
-                        <Form.Label column sm="2">Email : </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="email"/>
-                        </Col>
-                    </Form.Group>   
-				<Row>
-                    <Col sm="8" />
-                    <Col sm="2">
-                        <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
-                    </Col>
-				        	<Col sm="2">
-                        <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
-                    </Col>
-                </Row>																					
-                </Form>                
-            </Modal.Body>            
-        </Modal>
+class ResetModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email:'',
+      onHide: false,
+      show: false,
+    };
+  }
+
+    handleSubmit = (event) => {
+      fetch('http://18.191.9.5:8090/user/resetbymail', {
+        method: 'POST',
+        body: JSON.stringify({
+          "email1": this.state.email
+        })
+      }).then((response) => response.json())
+      .then((data) => console.log('This is your data', data));
+      // this.props.onHide();
+      // window.location.reload();
+      event.preventDefault();
+    }
+  render() {
+    return(
+      <Modal show={this.props.show} onHide={this.props.onHide}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+      >
+          <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                  Reset Password
+              </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>                                        
+                  <Form.Group as={Row} controlId="formGroupEmail">
+                      <Form.Label column sm="2">Email : </Form.Label>
+                      <Col sm="10">
+                          <Form.Control type="email"/>
+                      </Col>
+                  </Form.Group>   																		
+              </Form>                
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" type="submit" onClick={this.handleSubmit}>Request</Button>
+            <Button variant="danger" onClick={this.props.onHide}>Cancel</Button>		
+          </Modal.Footer>            
+      </Modal>
     )
+  }
 }
+
+// function ResetModal(props) {
+//   return (
+//       <Modal
+//           {...props}
+//           size="lg"
+//           aria-labelledby="contained-modal-title-vcenter"
+//           centered
+//       >
+//           <Modal.Header closeButton>
+//               <Modal.Title id="contained-modal-title-vcenter">
+//                   Reset Password
+//               </Modal.Title>
+//           </Modal.Header>
+//           <Modal.Body>
+//               <Form>                                        
+//                   <Form.Group as={Row} controlId="formGroupEmail">
+//                       <Form.Label column sm="2">Email : </Form.Label>
+//                       <Col sm="10">
+//                           <Form.Control type="email"/>
+//                       </Col>
+//                   </Form.Group>   
+//               <Row>
+//                   <Col sm="8" />
+//                   <Col sm="2">
+//                       <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
+//                   </Col>
+//                 <Col sm="2">
+//                       <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
+//                   </Col>
+//               </Row>																					
+//               </Form>                
+//           </Modal.Body>            
+//       </Modal>
+//   )
+// }
 
 export default ApiLogin;

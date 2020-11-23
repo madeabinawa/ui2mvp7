@@ -51,7 +51,7 @@ class GetUsers extends Component {
                 <thead style={{textAlign:'center'}}>
                         <tr>
                             <th>No</th>
-                            <th>Id User (baca nama User)</th>
+                            <th>Id User </th>
                             <th>Employee Id</th>
                             <th>Nama PBAM </th>
                             <th>Action</th>

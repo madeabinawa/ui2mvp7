@@ -16,7 +16,7 @@ class GetUsers extends Component {
    /* SAMPLE UNTUK POST DATA */
    componentDidMount() {
     
-    fetch("http://18.191.9.5:8090/pba/list")
+    fetch("http://18.191.9.5:8090/pba/not-pbam")
       .then(res => res.json())
       .then(parsedJSON =>
         parsedJSON.pba.map(data => ({
@@ -49,9 +49,9 @@ class GetUsers extends Component {
                 <thead style={{textAlign:'center'}}>
                         <tr>
                             <th>No</th>
-                            <th>Id User (baca nama User)</th>
+                            <th>Id User </th>
                             <th>Employee Id</th>
-                            <th>Nama PBAM (ini harusnya kosong) </th>
+                            <th> PBAM </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -61,7 +61,7 @@ class GetUsers extends Component {
                             <td>{getId}</td>
                             <td>{getUserid}</td>
                             <td>{getEmployee}</td>
-                            <td>{getPbamId}</td>
+                            <td>{getPbamId ? '-' : {getPbamId} }</td>
                             
                             <td style={{textAlign:'center'}}> 
                                 <Button style={{"width" : "100%"}} variant="success" onClick={() => this.setState({modalAdd: !this.state.modalAdd})}> 

@@ -83,7 +83,6 @@ class ApiLogin extends Component {
   }
 }
 
-<<<<<<< HEAD
 class ResetModal extends Component {
   constructor(props) {
     super(props);
@@ -133,41 +132,6 @@ class ResetModal extends Component {
             <Button variant="danger" onClick={this.props.onHide}>Cancel</Button>		
           </Modal.Footer>            
       </Modal>
-=======
-function ResetModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Reset Password
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>                                        
-                    <Form.Group as={Row} controlId="formGroupEmail">
-                        <Form.Label column sm="2">Email : </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="email"/>
-                        </Col>
-                    </Form.Group>   
-				<Row>
-                    <Col sm="8" />
-                    <Col sm="2">
-                        <Button variant="success" type="submit" className="btn btn-primary btn-block">Request</Button>   	
-                    </Col>
-				      	<Col sm="2">
-                        <Button variant="danger" onClick={props.onHide}>Cancel</Button>		
-                    </Col>
-                </Row>																					
-                </Form>                
-            </Modal.Body>            
-        </Modal>
->>>>>>> 345f30140d5effb65d154ffc96ee8198b5f09a3a
     )
 }
 }

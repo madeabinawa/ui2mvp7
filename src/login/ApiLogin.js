@@ -56,6 +56,17 @@ class ApiLogin extends Component {
     event.preventDefault();
   }
 
+  // redirectPages() {
+  //   switch(idToken){
+  //     case '1':
+  //       return(<Redirect to="/pcuPage" />)
+  //     case '2':
+  //       return(<Redirect to="/pbaPage" />)
+  //     case '3':
+  //       return(<Redirect to="/userPage" />)
+  //   }
+  // }
+
   render() {
     const isToken = this.state.token
     if(isToken === '') 
@@ -85,9 +96,28 @@ class ApiLogin extends Component {
         </div>				
       );
     }
+    // if(isToken === '1')
+    //     return(<Redirect to="/userPage" />)
+    //   if(isToken === '2')
+    //     return(<Redirect to="/userPage" />)
+    //   if(isToken === '3')
+    //     return(<Redirect to="/userPage" />)  
     else {
-      return(<Redirect to="/userPage" />)  
-      }
+      // {() => {
+      //   switch(isToken){
+      //         case '1':
+      //           return(<Redirect to="/pcuPage" />)
+      //         case '2':
+      //           return(<Redirect to="/pbaPage" />)
+      //         case '3':
+      //           return(<Redirect to="/userPage" />)
+      //         default:
+      //           return null;
+      //       }
+      // }}
+      // return({this.redirectPages(isToken)})
+      return(<Redirect to="/userPage" />)
+    }
   }
 }
 
@@ -144,4 +174,16 @@ class ResetModal extends Component {
 }
 }
 
+// function RedirectPages (idToken) {
+//   switch(idToken){
+//     case '1':
+//       return(<Redirect to="/pcuPage" />)
+//     case '2':
+//       return(<Redirect to="/pbaPage" />)
+//     case '3':
+//       return(<Redirect to="/userPage" />)
+//     default:
+//       r
+//   }
+// }
 export default ApiLogin;

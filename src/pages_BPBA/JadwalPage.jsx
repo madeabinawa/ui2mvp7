@@ -16,6 +16,7 @@ class AddHolidayModal extends Component {
             id: '',
             tanggal: '',
             tanggal2:'',
+            deskripsi: '',
             onHide: false,
             show: false,
         };
@@ -34,12 +35,12 @@ class AddHolidayModal extends Component {
     }
 
     handleSubmit = (event) => {
-        // alert('data telah di tambahkan: ' + this.state.value);
+        alert('data telah di tambahkan: ');
         fetch('http://18.191.9.5:8090/day-off/create', {
             method: 'POST',
             body: JSON.stringify({
-                "tanggal": this.state.tanggal,
-                "tanggal2": this.state.tanggal2,
+                "tanggal": new Date(this.state.tanggal).toISOString(),
+                "tanggal2": new Date(this.state.tanggal).toISOString(),
                 "deskripsi": this.state.deskripsi,
             })
         }).then(function(response) {
@@ -69,25 +70,25 @@ render () {
                 <Form.Group as={Row} controlId="formGroupHolidayStart">
                     <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
+                    <Form.Control name="tanggal" type="date" value={this.state.tanggal} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formGroupHolidayEnd">
                     <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
+                    <Form.Control name="tanggal2" type="date" value={this.state.tanggal} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formGroupEmail2">
                     <Form.Label column sm="4">Deskripsi: </Form.Label>
                     <Col sm="8">
-                        <Form.Control as="textarea" rows={3}/>
+                    <Form.Control as="textarea" rows={3} name="deskripsi" value={this.state.deskripsi} onChange={this.handleInputChange}/>
                     </Col>
                 </Form.Group>
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="success">Simpan</Button>
+        <Button variant="success" type="submit" value="Submit" onClick={this.handleSubmit}>Simpan</Button> {' '}
             <Button variant="danger" onClick={this.props.onHide}>Batal</Button>
         </Modal.Footer>
         </Modal>

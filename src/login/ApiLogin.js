@@ -56,24 +56,13 @@ class ApiLogin extends Component {
     event.preventDefault();
   }
 
-  // redirectPages() {
-  //   switch(idToken){
-  //     case '1':
-  //       return(<Redirect to="/pcuPage" />)
-  //     case '2':
-  //       return(<Redirect to="/pbaPage" />)
-  //     case '3':
-  //       return(<Redirect to="/userPage" />)
-  //   }
-  // }
-
   render() {
     const isToken = this.state.token
     if(isToken === '') 
     {
       return (		
         <div className="Login">
-          <div className="auth-inner">
+          <div className=" container auth-inner">
           <h1 style={{textAlign:'center'}}><FontAwesomeIcon icon={faUserCircle} /> </h1>
             <h4 style={{textAlign:'center', marginBottom:25}}>PLEASE LOGIN</h4>
             <Form onSubmit={(e)=>this.handleSubmit(e,this)}>				
@@ -96,28 +85,9 @@ class ApiLogin extends Component {
         </div>				
       );
     }
-    // if(isToken === '1')
-    //     return(<Redirect to="/userPage" />)
-    //   if(isToken === '2')
-    //     return(<Redirect to="/userPage" />)
-    //   if(isToken === '3')
-    //     return(<Redirect to="/userPage" />)  
     else {
-      // {() => {
-      //   switch(isToken){
-      //         case '1':
-      //           return(<Redirect to="/pcuPage" />)
-      //         case '2':
-      //           return(<Redirect to="/pbaPage" />)
-      //         case '3':
-      //           return(<Redirect to="/userPage" />)
-      //         default:
-      //           return null;
-      //       }
-      // }}
-      // return({this.redirectPages(isToken)})
-      return(<Redirect to="/userPage" />)
-    }
+      return(<Redirect to="/userPage" />)  
+      }
   }
 }
 
@@ -174,16 +144,4 @@ class ResetModal extends Component {
 }
 }
 
-// function RedirectPages (idToken) {
-//   switch(idToken){
-//     case '1':
-//       return(<Redirect to="/pcuPage" />)
-//     case '2':
-//       return(<Redirect to="/pbaPage" />)
-//     case '3':
-//       return(<Redirect to="/userPage" />)
-//     default:
-//       r
-//   }
-// }
 export default ApiLogin;

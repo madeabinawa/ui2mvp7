@@ -70,13 +70,13 @@ render () {
                 <Form.Group as={Row} controlId="formGroupHolidayStart">
                     <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
                     <Col sm="8">
-                    <Form.Control name="tanggal" type="date" value={this.state.tanggal} onChange={this.handleInputChange} />
+                    <Form.Control name="tanggal" type="datetime" value={this.state.tanggal} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formGroupHolidayEnd">
                     <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
                     <Col sm="8">
-                    <Form.Control name="tanggal2" type="date" value={this.state.tanggal} onChange={this.handleInputChange} />
+                    <Form.Control name="tanggal2" type="datetime" value={this.state.tanggal} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row} controlId="formGroupEmail2">

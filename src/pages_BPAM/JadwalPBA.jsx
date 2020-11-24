@@ -1,16 +1,17 @@
-import React, {useState} from 'react'
+import React,{ useState, Component } from 'react'
 import NavBar from '../navbar/NavbarPBAM';
 import { Button, Table, Form, Row, Col, Modal, ButtonGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPlus, faEdit } from '@fortawesome/free-solid-svg-icons'
+import ShowCuti from './ApiListCuti';
 
 function ShowLokasi(props) {
     const[modalAdd, setModalAdd] = useState(false);
     const[modalDelete, setModalDelete] = useState(false);
     return (
         <div>
-            <h2 style={{ color: 'orange', marginTop:30 }} > LOKASI KERJA </h2>
+            <h2 style={{ color: 'green', marginTop:30 }} > LOKASI KERJA </h2>
                     <ButtonGroup className="mb-2 float-right">
                     <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH LOKASI  </Button>
                     </ButtonGroup>
@@ -93,53 +94,6 @@ function ShowHari(props) {
     )
 }
 
-function ShowCuti(props) {
-    const[modalAdd, setModalAdd] = useState(false);
-    const[modalEdit, setModalEdit] = useState(false);
-    const[modalDelete, setModalDelete] = useState(false);
-    return (
-        <div>
-            <h2 style={{ color: 'red', marginTop:30  }}> JADWAL CUTI </h2>
-            <ButtonGroup className="mb-2 float-right">
-                <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}> <FontAwesomeIcon icon={faPlus} /> TAMBAH CUTI  </Button>
-            </ButtonGroup>
-            <AddCutiModal 
-                show={modalAdd}
-                onHide={() => setModalAdd(false)} />
-            <Table striped bordered hover responsive>
-                <thead style={{textAlign:'center'}}>
-                    <tr>
-                        <th>No.</th>
-                        <th>Tanggal Mulai</th>
-                        <th>Tanggal Berakhir</th>
-                        <th>Deskripsi</th>
-                        
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody style={{textAlign:'center'}}>
-                    <tr>
-                        <td>1</td>
-                        <td>16 Desember 2020</td>
-                        <td>18 Desember 2020</td>
-                        <td>Cuti Kerja</td>
-                        <td>
-                            <Button variant="warning" onClick={() => setModalEdit(true)}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
-                            <Button variant="danger" onClick={() => setModalDelete(true)}> <FontAwesomeIcon icon={faTrash} /> HAPUS </Button>
-                            <EditCutiModal show={modalEdit}
-                                onHide={() => setModalEdit(false)}/>
-                            <DeletePBAModal 
-                                show={modalDelete}
-                                onHide={() => setModalDelete(false)}
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
-        </div>
-    )
-}
-
 function AddHariModal(props) {
     return (
         <Modal
@@ -188,13 +142,60 @@ function AddHariModal(props) {
     )
 }
 
-function AddCutiModal(props) {
-    return (
-        <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        >
+class AddCutiModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state ={
+            id: '',
+            mulai_hari: '',
+            akhir_hari:'',
+            deskripsi: '',
+            user_id: 3,
+            onHide: false,
+            show: false,
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+       // const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.type === 'select' ? target.selected : target.value;
+        const name = target.name;
+    
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit = (event) => {
+        alert('data telah di tambahkan: ');
+        fetch('http://18.191.9.5:8090/paid-leave/create', {
+            method: 'POST',
+            body: JSON.stringify({
+                "mulai_hari": new Date(this.state.mulai_hari).toISOString(),
+                "akhir_hari": new Date(this.state.akhir_hari).toISOString(),
+                "deskripsi": this.state.deskripsi,
+                "user_id": this.state.user_id,
+            })
+        }).then(function(response) {
+            console.log(response)
+            return response.json();
+        });
+        this.props.onHide();
+        window.location.reload();
+        event.preventDefault();
+
+    }
+render () {
+    
+        return (
+        <Modal show={this.props.show} onHide={this.props.onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
             Tambah Tanggal Cuti
@@ -202,32 +203,34 @@ function AddCutiModal(props) {
         </Modal.Header>
         <Modal.Body>
         <Form>
-                <Form.Group as={Row} controlId="formGroupHolidayStart">
+                <Form.Group as={Row} >
                     <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
+                    <Form.Control name="mulai_hari" type="date" value={this.state.mulai_hari} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="formGroupHolidayEnd">
+                <Form.Group as={Row}>
                     <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
+                    <Form.Control name="akhir_hari" type="date" value={this.state.akhir_hari} onChange={this.handleInputChange} />
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row} controlId="formGroupEmail2">
+                <Form.Group as={Row} >
                     <Form.Label column sm="4">Deskripsi: </Form.Label>
                     <Col sm="8">
-                        <Form.Control as="textarea" rows={3}/>
+                    <Form.Control as="textarea" rows={3} name="deskripsi" value={this.state.deskripsi} onChange={this.handleInputChange}/>
                     </Col>
                 </Form.Group>
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="success">Simpan</Button>
-            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+        <Button variant="success" type="submit" value="Submit" onClick={this.handleSubmit}>Simpan</Button> {' '}
+            <Button variant="danger" onClick={this.props.onHide}>Batal</Button>
         </Modal.Footer>
         </Modal>
     )
+  }
+
 }
 
 function AddLokasiModal(props) {
@@ -377,6 +380,7 @@ function DeletePBAModal(props) {
 }
 
 export default function JadwalPBA() {
+    const[modalAdd, setModalAdd] = useState(false);
     const ColoredLine = ({ color }) => (
         <hr
             style={{
@@ -411,7 +415,19 @@ export default function JadwalPBA() {
 
                     <ColoredLine color="black" />
 
-                    <ShowCuti />
+                    <div className="container">
+                        <ButtonGroup className="mb-2 float-right">
+                            <Button variant="primary" type="submit" onClick={() => setModalAdd(true)}><FontAwesomeIcon icon={faPlus} /> TAMBAH JADWAL</Button>
+                        </ButtonGroup>
+                        <AddCutiModal 
+                            show={modalAdd}
+                            onHide={() => setModalAdd(false)}
+                        />
+                        <h2 style={{ color: 'green', marginTop:30  }}> JADWAL CUTI </h2>
+                        <ShowCuti />
+                    </div>
+
+                    
                 </div>
             </React.Fragment>
         </div>

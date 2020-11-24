@@ -82,73 +82,174 @@ class GetUsers extends Component {
     )
     }
 }
-function EditUsersModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Ubah User
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>
-                    <Form.Group as={Row} controlId="formGroupRole">
-                        <Form.Label column sm="2">Role: </Form.Label>
-                        <Col sm="10">
-                            <Form.Control as="select" defaultValue="Choose...">
-                                <option>Priority Customers (PCu)</option>
-                                <option>Personal Banking Assistent (PBA)</option>
-                                <option>Personal Banking Assistent Manager (PBAM) </option>
-                                <option>Banking Premium Booking Administration (BPBA) </option>
-                            </Form.Control>
+
+class EditUsersModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: null,
+            nama: '',
+            alamat: '',
+            role_id: null,
+            email1: '',
+            email2: '',
+            phone1: '',
+            phone2: '',
+            password:'123456',
+            status: null,
+            onHide: false,
+            show: false,
+        }
+    }
+    
+    handleResetPassword = (event) => {
+        fetch('http://18.191.9.5:8090/user/reset', {
+            method:'POST',
+            body: JSON.stringify({
+                "Id": parseFloat(this.state.id)
+            })
+        }).then(function(response) {
+            console.log(response)
+            return response.json();
+        });
+        this.props.onHide();
+        event.preventDefault();
+    }
+    render(){
+        return (
+            <Modal show={this.props.show} onHide={this.props.onHide}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Ubah User
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group as={Row} controlId="formGroupRole">
+                            <Form.Label column sm="2">Role: </Form.Label>
+                            <Col sm="10">
+                                <Form.Control as="select" defaultValue="Choose...">
+                                        <option>Priority Customers (PCu)</option>
+                                        <option>Personal Banking Assistent (PBA)</option>
+                                        <option>Personal Banking Assistent Manager (PBAM) </option>
+                                        <option>Banking Premium Booking Administration (BPBA) </option>
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGroupName">
+                            <Form.Label column sm="2">Nama: </Form.Label>
+                            <Col sm="10">
+                                <Form.Control type="text"/>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGroupEmail">
+                            <Form.Label column sm="2">Email 1: </Form.Label>
+                            <Col sm="10">
+                                <Form.Control type="email"/>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGroupEmail2">
+                            <Form.Label column sm="2">Email 2: </Form.Label>
+                            <Col sm="10">
+                                <Form.Control type="email"/>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} controlId="formGroupStatus">
+                            <Form.Label column sm="2">Status: </Form.Label>
+                            <Col sm="3">
+                                <Form.Control as="select" defaultValue="Choose...">
+                                    <option>Enable</option>
+                                    <option>Disable</option>
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+                    <Row>
+                        <Col sm="2" />
+                        <Col sm="5">
+                            <Button variant="warning" onClick={this.handleResetPassword}>Reset Password</Button>
                         </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formGroupName">
-                        <Form.Label column sm="2">Nama: </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="text"/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formGroupEmail">
-                        <Form.Label column sm="2">Email 1: </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="email"/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formGroupEmail2">
-                        <Form.Label column sm="2">Email 2: </Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="email"/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formGroupStatus">
-                        <Form.Label column sm="2">Status: </Form.Label>
-                        <Col sm="3">
-                            <Form.Control as="select" defaultValue="Choose...">
-                                <option>Enable</option>
-                                <option>Disable</option>
-                            </Form.Control>
-                        </Col>
-                    </Form.Group>
-                </Form>
-                <Row>
-                    <Col sm="2" />
-                    <Col sm="5">
-                        <Button variant="warning">Reset Password</Button>
-                    </Col>
-                </Row>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="success">Simpan</Button>
-                <Button variant="danger" onClick={props.onHide}>Batal</Button>
-            </Modal.Footer>
-        </Modal>
-    )
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success">Simpan</Button>
+                    <Button variant="danger" onClick={this.props.onHide}>Batal</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
 }
+// function EditUsersModal(props) {
+//     return (
+//         <Modal
+//             {...props}
+//             size="lg"
+//             aria-labelledby="contained-modal-title-vcenter"
+//             centered
+//         >
+//             <Modal.Header closeButton>
+//                 <Modal.Title id="contained-modal-title-vcenter">
+//                     Ubah User
+//                 </Modal.Title>
+//             </Modal.Header>
+//             <Modal.Body>
+//                 <Form>
+//                     <Form.Group as={Row} controlId="formGroupRole">
+//                         <Form.Label column sm="2">Role: </Form.Label>
+//                         <Col sm="10">
+//                             <Form.Control as="select" defaultValue="Choose...">
+//                                 <option>Priority Customers (PCu)</option>
+//                                 <option>Personal Banking Assistent (PBA)</option>
+//                                 <option>Personal Banking Assistent Manager (PBAM) </option>
+//                                 <option>Banking Premium Booking Administration (BPBA) </option>
+//                             </Form.Control>
+//                         </Col>
+//                     </Form.Group>
+//                     <Form.Group as={Row} controlId="formGroupName">
+//                         <Form.Label column sm="2">Nama: </Form.Label>
+//                         <Col sm="10">
+//                             <Form.Control type="text"/>
+//                         </Col>
+//                     </Form.Group>
+//                     <Form.Group as={Row} controlId="formGroupEmail">
+//                         <Form.Label column sm="2">Email 1: </Form.Label>
+//                         <Col sm="10">
+//                             <Form.Control type="email"/>
+//                         </Col>
+//                     </Form.Group>
+//                     <Form.Group as={Row} controlId="formGroupEmail2">
+//                         <Form.Label column sm="2">Email 2: </Form.Label>
+//                         <Col sm="10">
+//                             <Form.Control type="email"/>
+//                         </Col>
+//                     </Form.Group>
+//                     <Form.Group as={Row} controlId="formGroupStatus">
+//                         <Form.Label column sm="2">Status: </Form.Label>
+//                         <Col sm="3">
+//                             <Form.Control as="select" defaultValue="Choose...">
+//                                 <option>Enable</option>
+//                                 <option>Disable</option>
+//                             </Form.Control>
+//                         </Col>
+//                     </Form.Group>
+//                 </Form>
+//                 <Row>
+//                     <Col sm="2" />
+//                     <Col sm="5">
+//                         <Button variant="warning">Reset Password</Button>
+//                     </Col>
+//                 </Row>
+//             </Modal.Body>
+//             <Modal.Footer>
+//                 <Button variant="success">Simpan</Button>
+//                 <Button variant="danger" onClick={props.onHide}>Batal</Button>
+//             </Modal.Footer>
+//         </Modal>
+//     )
+// }
 
 export default GetUsers;

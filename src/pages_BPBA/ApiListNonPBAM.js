@@ -39,12 +39,7 @@ class GetUsers extends Component {
     const { items } = this.state;
     return (
       <div>
-          {items.length > 0
-            ? items.map(item => {
-                const { getId, getUserid, getEmployee, getPbamId } = item;
-                return (
-                  <div>
-                      <h3 style={{ color: 'green' }}> Available PBA </h3>
+        <h3 style={{ color: 'green' }}> Available PBA </h3>
                       <Table striped bordered hover responsive>
                 <thead style={{textAlign:'center'}}>
                         <tr>
@@ -54,32 +49,33 @@ class GetUsers extends Component {
                             <th> PBAM </th>
                             <th>Action</th>
                         </tr>
-                    </thead>
-                    <tbody style={{textAlign:'center'}}>
+               </thead>
+              <tbody style={{textAlign:'center'}}>
+          {items.length > 0
+            ? items.map(item => {
+                const { getId, getUserid, getEmployee, getPbamId } = item;
+                return (
                     <tr>
-                            
-                            <td>{getId}</td>
-                            <td>{getUserid}</td>
-                            <td>{getEmployee}</td>
-                            <td>{getPbamId ? '-' : {getPbamId} }</td>
-                            
-                            <td style={{textAlign:'center'}}> 
-                                <Button style={{"width" : "100%"}} variant="success" onClick={() => this.setState({modalAdd: !this.state.modalAdd})}> 
-                                <FontAwesomeIcon icon={faPlus} /> TAMBAH </Button> 
-                            </td>
-                            <AddPBAModal 
-                                show={this.state.modalAdd}
-                                onHide={() => this.setState({modalAdd: !this.state.modalAdd})}
-                                />
-                        </tr>
-                    </tbody>
-                </Table>
-                  </div>
-                );
-              })
-            : null}
-      </div>
-    );
+                        <td>{getId}</td>
+                        <td>{getUserid}</td>
+                        <td>{getEmployee}</td>
+                        <td>{getPbamId ? '-' : {getPbamId} }</td>
+                        <td style={{textAlign:'center'}}> 
+                            <Button style={{"width" : "100%"}} variant="success" onClick={() => this.setState({modalAdd: !this.state.modalAdd})}> 
+                            <FontAwesomeIcon icon={faPlus} /> TAMBAH </Button> 
+                        </td>
+                        <AddPBAModal 
+                            show={this.state.modalAdd}
+                            onHide={() => this.setState({modalAdd: !this.state.modalAdd})}
+                            />
+                  </tr>
+                   )
+                  })
+              : null}
+              </tbody>
+          </Table>
+        </div>
+    )
   }
    
 }

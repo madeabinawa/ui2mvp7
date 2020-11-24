@@ -9,6 +9,7 @@ import JadwalBPA from './pages_BPAM/JadwalPBA';
 import GantiPassword from './pages_BPBA/UbahPassPage';
 import LaporanPBAM from './pages_BPAM/Laporan';
 import CreateUser from './pages_BPBA/ApiCreateUser';
+import CreateJadwal from './pages_BPBA/createJadwal';
 import HomePBA from './pages_PBA/PCuPage';
 import Schedule from './pages_PBA/SchedulePage';
 
@@ -40,7 +41,8 @@ function routes() {
 			<Route exact path="/api/v1/role/delete" component={DeleteRole} />
 
             <Route exact path="/ubahPassPage" component={GantiPassword} />
-            <Route exact path="/createUser" component={CreateUser} />			
+            <Route exact path="/createUser" component={CreateUser} />	
+            <Route exact path="/createJadwal" component={CreateJadwal} />		
         </BrowserRouter>
     );
 }

@@ -40,26 +40,24 @@ class GetUsers extends Component {
     const { items } = this.state;
     return (
       <div>
+          <h3 style={{ color: 'orange', marginTop: 30 }}> Anggota PBA </h3>
+          <Table striped bordered hover responsive>
+            <thead style={{textAlign:'center'}}>
+                <tr>
+                    <th>No</th>
+                    <th>Id User </th>
+                    <th>Employee Id</th>
+                    <th>Nama PBAM </th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+          <tbody style={{textAlign:'center'}}>
           {items.length > 0
             ? items.map(item => {
                 const { getId, getUserid, getEmployee, getPbamId } = item;
                 return (
-                  <div>
-                      <h3 style={{ color: 'orange', marginTop: 30 }}> Anggota PBA - <b> {getPbamId} </b> </h3>
-
-                      <Table striped bordered hover responsive>
-                <thead style={{textAlign:'center'}}>
-                        <tr>
-                            <th>No</th>
-                            <th>Id User </th>
-                            <th>Employee Id</th>
-                            <th>Nama PBAM </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody style={{textAlign:'center'}}>
+                    
                     <tr>
-                            
                             <td>{getId}</td>
                             <td>{getUserid}</td>
                             <td>{getEmployee}</td>
@@ -74,14 +72,13 @@ class GetUsers extends Component {
                                 onHide={() => this.setState({modalDelete: !this.state.modalDelete})}
                                 />
                         </tr>
-                    </tbody>
-                </Table>
-                  </div>
-                );
-              })
+                        )
+                })
             : null}
+            </tbody>
+        </Table>
       </div>
-    );
+    )
   }
    
 }

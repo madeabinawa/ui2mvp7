@@ -1,53 +1,64 @@
-import React, {useState} from 'react'
+import React,{ useState, Component } from 'react'
 import { Form, Col, Row, Button, Modal, Table, ButtonGroup } from 'react-bootstrap'
 import NavBar from '../navbar/NavbarBPBA';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import ShowAllHoliday from './ApiListJadwalLibur';
 
-function ShowAllHoliday(props) {
-    const[modalDelete, setModalDelete] = useState(false);
-    const[modalEdit, setModalEdit] = useState(false);
-    return(
-        <Table striped bordered hover responsive>
-            <thead style={{textAlign:'center'}}>
-                <tr>
-                    <th>ID Libur</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Berakhir</th>
-                    <th>Deskripsi</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody style={{textAlign:'center'}}>
-            <tr>
-                    <td>JD01</td>
-                    <td>25 Desember 2020</td>
-                    <td>25 Desember 2020</td>
-                    <td>Hari Natal</td>
-                    <td>
-                        <Button variant="warning" onClick={() => setModalEdit(true)}> <FontAwesomeIcon icon={faEdit} /> UBAH </Button>{' '}
-                        <Button variant="danger" onClick={() => setModalDelete(true)}><FontAwesomeIcon icon={faTrash} /> HAPUS</Button>
-                        <EditHolidayModal show={modalEdit}
-                            onHide={() => setModalEdit(false)}/>
-                        <DeleteHolidayModal 
-                            show={modalDelete}
-                            onHide={() => setModalDelete(false)}/>
-                    </td>
-                </tr>
-            </tbody>
-        </Table>
-    )
-}
 
-function AddHolidayModal(props) {
-    return (
-        <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        >
+class AddHolidayModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state ={
+            id: '',
+            tanggal: '',
+            tanggal2:'',
+            onHide: false,
+            show: false,
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+       // const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.type === 'select' ? target.selected : target.value;
+        const name = target.name;
+    
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit = (event) => {
+        // alert('data telah di tambahkan: ' + this.state.value);
+        fetch('http://18.191.9.5:8090/day-off/create', {
+            method: 'POST',
+            body: JSON.stringify({
+                "tanggal": this.state.tanggal,
+                "tanggal2": this.state.tanggal2,
+                "deskripsi": this.state.deskripsi,
+            })
+        }).then(function(response) {
+            console.log(response)
+            return response.json();
+        });
+        this.props.onHide();
+        window.location.reload();
+        event.preventDefault();
+
+    }
+render () {
+    
+        return (
+        <Modal show={this.props.show} onHide={this.props.onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
             Tambah Tanggal Libur
@@ -77,53 +88,15 @@ function AddHolidayModal(props) {
         </Modal.Body>
         <Modal.Footer>
             <Button variant="success">Simpan</Button>
-            <Button variant="danger" onClick={props.onHide}>Batal</Button>
+            <Button variant="danger" onClick={this.props.onHide}>Batal</Button>
         </Modal.Footer>
         </Modal>
     )
+  }
+
 }
 
-function EditHolidayModal(props) {
-    return (
-        <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        >
-        <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-            Ubah Tanggal Libur
-            </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <Form>
-                <Form.Group as={Row} controlId="formGroupHolidayStart">
-                    <Form.Label column sm="4">Tanggal Mulai: </Form.Label>
-                    <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formGroupHolidayEnd">
-                    <Form.Label column sm="4">Tanggal Berakhir: </Form.Label>
-                    <Col sm="8">
-                        <Form.Control type="date" placeholder="Tanggal"/>
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formGroupEmail2">
-                    <Form.Label column sm="4">Deskripsi: </Form.Label>
-                    <Col sm="8">
-                        <Form.Control as="textarea" rows={3}/>
-                    </Col>
-                </Form.Group>
-            </Form>
-        </Modal.Body>
-        <Modal.Footer>
-            <Button variant="success">Simpan</Button>
-            <Button variant="danger" onClick={props.onHide}>Batal</Button>
-        </Modal.Footer>
-        </Modal>
-    )
-}
+
 function DeleteHolidayModal(props) {
     return (
         <Modal
